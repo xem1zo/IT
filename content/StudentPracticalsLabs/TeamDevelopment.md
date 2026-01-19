@@ -83,7 +83,7 @@ mkdir -p project/{css,js,images/icons,fonts,pages}
 mkdir -p my-portfolio-site/{css,js,images/{portfolio,icons},fonts,documents} && touch my-portfolio-site/{index.html,about.html,contact.html,portfolio.html,404.html,README.md,.gitignore,sitemap.xml} && touch my-portfolio-site/css/{style.css,reset.css,responsive.css} && touch my-portfolio-site/js/{main.js,menu.js,form-validation.js} && touch my-portfolio-site/images/{avatar.jpg,logo.png} && touch my-portfolio-site/images/portfolio/{project1.jpg,project2.jpg,project3.jpg} && touch my-portfolio-site/images/icons/{github.svg,telegram.svg,email.svg} && touch my-portfolio-site/fonts/custom-font.woff2 && touch my-portfolio-site/documents/resume.pdf
 ```
 
-### Полезные команды для команды
+### Полезные команды для работы над проектом
 
 Постоянная синхронизация перед каждым изменением в проекте:
 ```shell
@@ -103,6 +103,6 @@ git remote -v                      # список удаленных репоз�
 git branch -r                      # удаленные ветки
 ```
 
-[Шпаргалка по работе с git](/README.md)
+[Шпаргалка по работе с git](/content/Git/README.md)
 
 ### Оцениваться совместная работа будет по колличеству и качеству коммитов от каждого участника. Буду проверять по `git log -p`
