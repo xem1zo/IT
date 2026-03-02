@@ -90,6 +90,19 @@ docker ps -a
 docker images
 ```
 
+Показать работающий Nginx
+
+Способ 1
+```shell
+curl http://localhost/
+```
+
+![Скрин вывода curl](img/curl_nginx.png)
+
+Способ 2 - [открыть http://localhost/ адрес в браузере](http://localhost/)
+
+![Скрин nginx в браузере](img/web_nginx.png)
+
 Если нужно только получить готовый образ, без создания и запуска контейнера, то
 ```shell
 docker pull nginx
@@ -172,19 +185,6 @@ docker ps -a
 ![Скрин контейнера](img/contaurer.png)
 
 > Из одного образа можно получить несколько контейнеров!
-
-Показать работающий Nginx
-
-Способ 1
-```shell
-curl http://localhost/
-```
-
-![Скрин вывода curl](img/curl_nginx.png)
-
-Способ 2 - [открыть http://localhost/ адрес в браузере](http://localhost/)
-
-![Скрин nginx в браузере](img/web_nginx.png)
 
 ### Управление контейнером
 
