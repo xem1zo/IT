@@ -23,7 +23,7 @@
 **Скриншот 1** — открытая страница Welcome to Docker в браузере:
 
 ```markdown
-[Welcome to Docker в браузере](Docker/img/welcome-page.png)
+![Welcome to Docker в браузере](../img/welcome-page.png)
 ```
 
 *(поместите файл скриншота в папку `Docker/img` и поправьте имя файла при необходимости)*
@@ -179,5 +179,6 @@ docker rm welcome-to-docker
 
 ---
 
-Ссылка на этот отчёт: `Docker/WelcomeToDocker/README.md` в репозитории.
+Ссылка на этот отчёт в GitHub:  
+[`Docker/WelcomeToDocker/README.md`](https://github.com/xem1zo/IT/blob/main/Docker/WelcomeToDocker/README.md)
 
