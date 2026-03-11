@@ -15,7 +15,7 @@
 docker version
 ```
 
-![Скрин версии Docker](img/docker_version.png)
+Скриншот: добавьте файл `img/docker_version.png`
 
 ### 2. Подготовка Docker (чтобы начать работать с "чистого листа")
 
@@ -40,7 +40,7 @@ docker image prune -a
 
 > Удаляйте только учебные контейнеры/образы: в контейнерах могут храниться важные данные!
 
-![Скрин состояния docker ps -a](img/apache_ps_a.png)
+Скриншот: добавьте файл `img/apache_ps_a.png`
 
 ### 3. Получение готового образа Apache (httpd) и запуск контейнера
 
@@ -50,7 +50,7 @@ docker image prune -a
 docker search httpd
 ```
 
-![Скрин поиска образа httpd](img/apache_search.png)
+Скриншот: добавьте файл `img/apache_search.png`
 
 Создать и запустить контейнер (проброс порта \(локальный 8081 → контейнерный 80\)):
 
@@ -72,8 +72,7 @@ docker images
 docker ps
 ```
 
-![Скрин docker images](img/apache_images.png)
-![Скрин docker ps](img/apache_ps.png)
+Скриншоты: добавьте файлы `img/apache_images.png` и `img/apache_ps.png`
 
 ### 4. Проверить работу Apache
 
@@ -83,13 +82,13 @@ docker ps
 curl http://localhost:8081/
 ```
 
-![Скрин curl](img/apache_curl.png)
+Скриншот: добавьте файл `img/apache_curl.png`
 
 Способ 2 (в браузере):
 
 [Откройте страницу http://localhost:8081/](http://localhost:8081/)
 
-![Скрин Apache в браузере](img/apache_web.png)
+Скриншот: добавьте файл `img/apache_web.png`
 
 ### 5. Мониторинг и логи контейнера
 
@@ -107,7 +106,7 @@ docker stats
 
 > Выйти можно по `Ctrl+C`
 
-![Скрин docker stats](img/apache_stats.png)
+Скриншот: добавьте файл `img/apache_stats.png`
 
 Посмотреть логи:
 
@@ -123,7 +122,7 @@ docker logs -f my-apache
 
 > Выйти можно по `Ctrl+C`
 
-![Скрин docker logs](img/apache_logs.png)
+Скриншот: добавьте файл `img/apache_logs.png`
 
 ### 6. Зайти в контейнер и изменить страницу
 
@@ -165,7 +164,7 @@ exit
 
 Обновите страницу в браузере \(F5 / Ctrl+R\) и зафиксируйте результат:
 
-![Скрин изменённой страницы](img/apache_web_changed.png)
+Скриншот: добавьте файл `img/apache_web_changed.png`
 
 ### 7. Вариант “по‑взрослому”: подмонтировать свою страницу с хоста (volume)
 
@@ -194,7 +193,7 @@ docker run -d --name my-apache -p 8081:80 -v "$(pwd)/apache_site:/usr/local/apac
 
 [http://localhost:8081/](http://localhost:8081/)
 
-![Скрин с volume](img/apache_volume.png)
+Скриншот: добавьте файл `img/apache_volume.png`
 
 ### 8. Остановка и удаление (очистка после работы)
 
@@ -217,5 +216,5 @@ docker images
 docker rmi httpd
 ```
 
-![Скрин удаления контейнера/образа](img/apache_cleanup.png)
+Скриншот: добавьте файл `img/apache_cleanup.png`
 
