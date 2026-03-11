@@ -22,9 +22,9 @@
 
 **Скриншот 1** — открытая страница Welcome to Docker в браузере:
 
-```markdown
+
 ![Welcome to Docker в браузере](../img/welcome-page.png)
-```
+
 
 *(поместите файл скриншота в папку `Docker/img` и поправьте имя файла при необходимости)*
 
@@ -57,9 +57,9 @@ Linux 1aae61f07795 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu J
 
 **Скриншот 2** — вывод `uname -a`:
 
-```markdown
+
 ![Вывод uname -a](../img/uname.png)
-```
+
 
 #### 3.2. Диспетчер ресурсов
 
@@ -89,9 +89,9 @@ Load average: 0.16 0.04 0.01 2/512 54
 
 **Скриншот 3** — вывод `top`:
 
-```markdown
+
 ![Вывод top](../img/top.png)
-```
+
 
 #### 3.3. Обновление пакетов
 
@@ -113,9 +113,9 @@ OK: 11 MiB in 21 packages
 
 **Скриншот 4** — процесс `apk update && apk upgrade`:
 
-```markdown
+
 ![apk update && apk upgrade](../img/apk-update-upgrade.png)
-```
+
 
 #### 3.4. Установка приложения `fastfetch`
 
@@ -135,9 +135,9 @@ OK: 15 MiB in 23 packages
 
 **Скриншот 5** — установка `fastfetch`:
 
-```markdown
+
 ![Установка fastfetch](../img/fastfetch-install.png)
-```
+
 
 #### 3.5. Запуск `fastfetch`
 
@@ -164,9 +164,9 @@ Memory: 882.64 MiB / 7.72 GiB
 
 **Скриншот 6** — вывод `fastfetch`:
 
-```markdown
+
 ![Вывод fastfetch](../img/fastfetch.png)
-```
+
 
 ### 4. Завершение работы
 
@@ -181,5 +181,8 @@ docker rm welcome-to-docker
 
 Ссылка на этот отчёт в GitHub:  
 [`Docker/WelcomeToDocker/README.md`](https://github.com/xem1zo/IT/blob/main/Docker/WelcomeToDocker/README.md)
+<<<<<<< HEAD
 
+=======
+>>>>>>> b088e9e22249e810ecb384dd565385ad99681761
 
