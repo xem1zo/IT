@@ -6,7 +6,7 @@
 
 В каталоге для Docker-проектов создайте структуру проекта командой Bash:
 ```shell
-mkdir -p hello-world && touch hello-world/Dockerfile
+mkdir -p hello-world && touch hello-world/Dockerfile && cd hello-world
 ```
 
 Содержимое файла `Dockerfile`
@@ -17,7 +17,7 @@ FROM alpine:latest
 CMD ["echo", "Привет, Docker! 🐳"]
 ```
 
-Сборка
+В командной строке, находясь в папке `hello-world`, выполнить:
 ```shell
 docker build -t hello-world .
 ```

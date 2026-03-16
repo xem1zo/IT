@@ -103,7 +103,7 @@ CMD ["ftxui_wow"]
 
 ### 5. Сборка и запуск
 
-Сборка образа
+В командной строке, находясь в папке `ftxui-wow`, выполнить:
 ```shell
 docker build -t ftxui-wow .
 ```
@@ -115,4 +115,8 @@ docker run -it --rm ftxui-wow
 ### 6. Войти в контейнер для исследования
 ```shell
 docker run -it --entrypoint bash ftxui-wow
+```
+выйти из контейнера:
+```shell
+exit
 ```

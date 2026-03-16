@@ -11,12 +11,11 @@ MyApp/
 ├── Dockerfile
 ├── MyApp.csproj
 ├── Program.cs
-├── .dockerignore
 ```
 
 В каталоге для Docker-проектов создать одной bash-командой всю структуру для нового приложения:
 ```shell
-mkdir -p MyApp && touch MyApp/Program.cs MyApp/ReservationSystem.csproj MyApp/Dockerfile MyApp/.dockerignore
+mkdir -p MyApp && touch MyApp/Program.cs MyApp/ReservationSystem.csproj MyApp/Dockerfile
 ```
 
 ### 2. Содержимое файла `MyApp.csproj`

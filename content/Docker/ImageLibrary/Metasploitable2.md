@@ -15,7 +15,12 @@ Metasploitable2 — специально уязвимая виртуальная
 docker pull tleemcjr/metasploitable2
 ```
 
-Зайти в контейнер
+Загрузить образ, создать и запустить контейнер, войти в него (для Windows)
+```shell
+docker run --name metasploitable2 -it tleemcjr/metasploitable2
+```
+
+Загрузить образ, создать и запустить контейнер, войти в него (для Linux)
 ```shell
 docker run --name metasploitable2 -it tleemcjr/metasploitable2:latest sh -c "/bin/services.sh && bash"
 ```

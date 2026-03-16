@@ -49,7 +49,7 @@ COPY index.html /usr/share/nginx/html/index.html
 EXPOSE 80
 ```
 
-Сборка:
+В командной строке, находясь в папке `my-website`, выполнить:
 ```shell
 docker build -t my-site .
 ```

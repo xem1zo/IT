@@ -7,7 +7,7 @@
 - [Готовые образы](/content/Docker/ImageLibrary/README.md)
 - [Dockerfile](/content/Docker/DockerFile/README.md)
 - [Docker Compose](/content/Docker/DockerCompose/DockerCompose.md)
-- [Docker проекты (compose)](/content/Docker/projects/README.md)
+- []()
 - []()
 
 ### Видео
