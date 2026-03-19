@@ -27,7 +27,7 @@ COPY Cargo.toml .
 # Создаём фиктивный src/main.rs, чтобы собрать зависимости
 RUN mkdir src && echo "fn main() {}" > src/main.rs
 # Собираем зависимости (при этом внутри контейнера создастся Cargo.lock)
-RUN cargo build --release && rm -f target/release/rust-docker-app*
+RUN cargo build --release && rm -f target/release/rust-app*
 # Теперь копируем настоящий исходный код
 COPY src ./src
 # Собираем окончательное приложение
@@ -38,26 +38,28 @@ FROM debian:stable-slim
 RUN useradd --create-home appuser
 WORKDIR /home/appuser
 # Копируем скомпилированный бинарник из этапа сборки
-COPY --from=builder /app/target/release/rust-docker-app ./rust-docker-app
+COPY --from=builder /app/target/release/rust-app ./rust-app
 # Переключаемся на пользователя (не root)
 USER appuser
 # Если ваше приложение — веб-сервер, укажите порт
 EXPOSE 8081
 # Запуск в правильном JSON-формате (сигналы будут работать)
-CMD ["./rust-docker-app"]
+CMD ["./rust-app"]
 ```
 
 ### 3. Содержимое файла `src/main.rs`
 ```rust
 fn main() {
     println!("Hello from Rust inside Docker! 🦀");
+    use std::io::{self, Write};
+    io::stdout().flush().unwrap();
 }
 ```
 
 ### 4. Содержимое файла `Cargo.toml` (конфигурация проекта)
 ```toml
 [package]
-name = "rust-docker-app"
+name = "rust-app"
 version = "0.1.0"
 edition = "2021"
 [dependencies]
@@ -75,7 +77,19 @@ docker build -t rust-app .
 
 Создание и запуск контейнера:
 ```shell
-docker run --rm rust-app
+docker run -it --rm rust-app
 ```
 
 > Вы должны увидеть: Hello from Rust inside Docker! 🦀
+
+### 6 Зайти в контейнер
+
+```shell
+docker run -it --rm --entrypoint sh rust-app
+```
+Запустить программу на Rust:
+```shell
+./rust-app
+```
+
+> Если вы обнаружили ошибку в этом тексте - сообщите пожалуйста автору!
