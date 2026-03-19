@@ -47,7 +47,7 @@ docker container prune $(docker ps -q)
 docker ps -a
 ```
 
-![Тут нужен скриншот вывода]()
+![Скриншот вывода docker ps -a](img/dockerPSa.png)
 
 - Опционально можно удалить ненужные образы. Показать текущие образы:
 ```shell
@@ -92,7 +92,7 @@ docker run -d --name my-nginx -p 80:80 nginx
 docker ps -a
 ```
 
-![Тут нужен скриншот]()
+![Скриншот вывода docker ps -a](img/dockerPSa.png)
 
 Показать загруженный на ваш компьютер образ
 ```shell
@@ -147,7 +147,7 @@ docker stop my-nginx
 docker rm my-nginx
 ```
 
-![Тут нужен скриншот вывода]()
+![Скриншот вывода docker rm](img/docker_rm.png)
 
 Если нужно создать ещё один контейнер из этого образа, то:
 ```shell
@@ -304,7 +304,7 @@ apt update && apt install -y fastfetch htop inxi cmatrix hollywood caca-utils mc
 htop
 ```
 
-![Скрин вывода htop]()
+![Скрин вывода htop](img/htop.png)
 
 > Выйти из `htop` можно по **Q**
 
@@ -312,14 +312,14 @@ htop
 cmatrix
 ```
 
-![Скрин вывода cmatrix]()
+![Скрин вывода cmatrix](img/cmatrix.png)
 
 > Выйти из `cmatrix` можно по **Q**
 
 ```shell
 hollywood
 ```
-![Скрин вывода hollywood]()bash
+![Скрин вывода hollywood](img/hollywood.png)
 
 > Выйти из `hollywood` можно по `Ctrl-C`
 
@@ -349,7 +349,7 @@ micro /usr/share/nginx/html/index.html
 
 [Проверить изменения на открытой странице >>](http://localhost/)
 
-![Скрин изменённой страницы в браузере](img/)
+![Скрин изменённой страницы в браузере](img/web_nginx_changed.png)
 
 Остановить все запущенные контейнеры
 ```shell
