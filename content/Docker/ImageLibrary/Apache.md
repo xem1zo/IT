@@ -17,7 +17,7 @@
 docker version
 ```
 
-![Скрин версии Docker](img/apache/01_docker_version.png)
+![Скрин версии Docker](img/apache/01_docker_version.svg)
 
 Если видите ошибку вида `open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified`, то:
 
@@ -25,7 +25,7 @@ docker version
 - дождитесь, пока он полностью включит engine
 - повторите команду `docker version`
 
-![Скрин ошибки Docker Desktop pipe](img/apache/01_docker_desktop_pipe_error.png)
+![Скрин ошибки Docker Desktop pipe](img/apache/01_docker_desktop_pipe_error.svg)
 
 > Готовые образы берутся из сторонних источников: **Docker Hub** и т.д.
 
@@ -37,7 +37,7 @@ docker version
 docker ps -a
 ```
 
-![Скрин вывода docker ps -a](img/apache/02_docker_ps_a.png)
+![Скрин вывода docker ps -a](img/apache/02_docker_ps_a.svg)
 
 #### Остановить все запущенные контейнеры
 
@@ -59,7 +59,7 @@ docker ps -q | ForEach-Object { docker stop $_ }
 docker container prune
 ```
 
-![Скрин вывода docker container prune](img/apache/02_docker_container_prune.png)
+![Скрин вывода docker container prune](img/apache/02_docker_container_prune.svg)
 
 #### (Опционально) удалить ненужные образы
 
@@ -69,7 +69,7 @@ docker container prune
 docker images
 ```
 
-![Скрин вывода docker images](img/apache/02_docker_images.png)
+![Скрин вывода docker images](img/apache/02_docker_images.svg)
 
 Удалить неиспользуемые образы:
 
@@ -77,7 +77,7 @@ docker images
 docker image prune -a
 ```
 
-![Скрин вывода docker image prune -a](img/apache/02_docker_image_prune_a.png)
+![Скрин вывода docker image prune -a](img/apache/02_docker_image_prune_a.svg)
 
 > Удаляйте только учебные контейнеры и образы, т.к. есть риск потерять важные данные, которые могут содержаться в контейнерах!
 
@@ -91,7 +91,7 @@ docker image prune -a
 docker search httpd
 ```
 
-![Скрин вывода docker search httpd](img/apache/03_docker_search_httpd.png)
+![Скрин вывода docker search httpd](img/apache/03_docker_search_httpd.svg)
 
 Получить, создать и запустить Apache:
 
@@ -99,7 +99,7 @@ docker search httpd
 docker run -d --name my-apache -p 8081:80 httpd
 ```
 
-![Скрин успешного docker run](img/apache/03_docker_run_httpd.png)
+![Скрин успешного docker run](img/apache/03_docker_run_httpd.svg)
 
 `docker run` объединяет команды `docker pull`, `docker create` и `docker start`.
 
@@ -109,7 +109,7 @@ docker run -d --name my-apache -p 8081:80 httpd
 docker ps -a
 ```
 
-![Скрин списка контейнеров](img/apache/03_docker_ps_a_after_run.png)
+![Скрин списка контейнеров](img/apache/03_docker_ps_a_after_run.svg)
 
 Показать загруженные образы:
 
@@ -117,7 +117,7 @@ docker ps -a
 docker images
 ```
 
-![Скрин списка образов](img/apache/03_docker_images_after_pull.png)
+![Скрин списка образов](img/apache/03_docker_images_after_pull.svg)
 
 ### 4. Проверить работу контейнера
 
@@ -127,11 +127,11 @@ docker images
 curl http://localhost:8081/
 ```
 
-![Скрин вывода curl](img/apache/04_curl_localhost_8081.png)
+![Скрин вывода curl](img/apache/04_curl_localhost_8081.svg)
 
 Способ 2 — открыть в браузере: [http://localhost:8081/](http://localhost:8081/)
 
-![Скрин Apache в браузере](img/apache/04_browser_localhost_8081.png)
+![Скрин Apache в браузере](img/apache/04_browser_localhost_8081.svg)
 
 Остановить контейнер:
 
@@ -139,7 +139,7 @@ curl http://localhost:8081/
 docker stop my-apache
 ```
 
-![Скрин docker stop](img/apache/04_docker_stop.png)
+![Скрин docker stop](img/apache/04_docker_stop.svg)
 
 Перезапустить:
 
@@ -147,7 +147,7 @@ docker stop my-apache
 docker restart my-apache
 ```
 
-![Скрин docker restart](img/apache/04_docker_restart.png)
+![Скрин docker restart](img/apache/04_docker_restart.svg)
 
 ### 5. Управление контейнером
 
@@ -159,7 +159,7 @@ docker restart my-apache
 docker ps -a
 ```
 
-![Скрин docker ps -a](img/apache/05_docker_ps_a.png)
+![Скрин docker ps -a](img/apache/05_docker_ps_a.svg)
 
 Подробности о контейнере:
 
@@ -167,7 +167,7 @@ docker ps -a
 docker inspect my-apache
 ```
 
-![Скрин docker inspect](img/apache/05_docker_inspect.png)
+![Скрин docker inspect](img/apache/05_docker_inspect.svg)
 
 Мониторинг ресурсов:
 
@@ -175,7 +175,7 @@ docker inspect my-apache
 docker stats
 ```
 
-![Скрин docker stats](img/apache/05_docker_stats.png)
+![Скрин docker stats](img/apache/05_docker_stats.svg)
 
 > Выйти из мониторинга можно по `Ctrl+C`
 
@@ -185,7 +185,7 @@ docker stats
 docker logs my-apache
 ```
 
-![Скрин docker logs](img/apache/05_docker_logs.png)
+![Скрин docker logs](img/apache/05_docker_logs.svg)
 
 Логи в режиме ожидания:
 
@@ -193,7 +193,7 @@ docker logs my-apache
 docker logs -f my-apache
 ```
 
-![Скрин docker logs -f](img/apache/05_docker_logs_f.png)
+![Скрин docker logs -f](img/apache/05_docker_logs_f.svg)
 
 > Выйти из логов можно по `Ctrl+C`
 
@@ -205,7 +205,7 @@ docker logs -f my-apache
 docker exec -it my-apache bash
 ```
 
-![Скрин docker exec bash](img/apache/05_docker_exec_bash.png)
+![Скрин docker exec bash](img/apache/05_docker_exec_bash.svg)
 
 Если `bash` недоступен, попробуйте:
 
@@ -213,7 +213,7 @@ docker exec -it my-apache bash
 docker exec -it my-apache sh
 ```
 
-![Скрин docker exec sh](img/apache/05_docker_exec_sh.png)
+![Скрин docker exec sh](img/apache/05_docker_exec_sh.svg)
 
 Установить консольный редактор (например, `micro`):
 
@@ -221,7 +221,7 @@ docker exec -it my-apache sh
 apt update && apt install -y micro
 ```
 
-![Скрин установки micro](img/apache/05_install_micro.png)
+![Скрин установки micro](img/apache/05_install_micro.svg)
 
 Открыть файл `index.html` для редактирования:
 
@@ -229,7 +229,7 @@ apt update && apt install -y micro
 micro /usr/local/apache2/htdocs/index.html
 ```
 
-![Скрин редактирования index.html](img/apache/05_edit_index_html.png)
+![Скрин редактирования index.html](img/apache/05_edit_index_html.svg)
 
 > Чтобы в веб‑странице поддерживался русский язык, добавьте тег `<meta charset="UTF-8">`.
 
@@ -237,7 +237,7 @@ micro /usr/local/apache2/htdocs/index.html
 
 Проверить результат: [http://localhost:8081/](http://localhost:8081/)
 
-![Скрин изменённой страницы в браузере](img/apache/05_browser_changed_page.png)
+![Скрин изменённой страницы в браузере](img/apache/05_browser_changed_page.svg)
 
 Выйти из контейнера:
 
@@ -245,7 +245,7 @@ micro /usr/local/apache2/htdocs/index.html
 exit
 ```
 
-![Скрин выхода exit](img/apache/05_exit.png)
+![Скрин выхода exit](img/apache/05_exit.svg)
 
 ### 6. Остановка и удаление
 
@@ -255,7 +255,7 @@ exit
 docker stop my-apache
 ```
 
-![Скрин docker stop](img/apache/06_docker_stop.png)
+![Скрин docker stop](img/apache/06_docker_stop.svg)
 
 Удалить контейнер:
 
@@ -263,7 +263,7 @@ docker stop my-apache
 docker rm my-apache
 ```
 
-![Скрин docker rm](img/apache/06_docker_rm.png)
+![Скрин docker rm](img/apache/06_docker_rm.svg)
 
 При необходимости удалить образ `httpd`:
 
@@ -271,7 +271,7 @@ docker rm my-apache
 docker rmi httpd
 ```
 
-![Скрин docker rmi httpd](img/apache/06_docker_rmi_httpd.png)
+![Скрин docker rmi httpd](img/apache/06_docker_rmi_httpd.svg)
 
 ### 7. (Дополнительно) Apache через Docker Compose
 
@@ -279,8 +279,8 @@ docker rmi httpd
 
 - `/content/Docker/projects/apache/`
 
-![Скрин docker compose up -d](img/apache/07_docker_compose_up.png)
+![Скрин docker compose up -d](img/apache/07_docker_compose_up.svg)
 
-![Скрин сайта из compose в браузере](img/apache/07_browser_compose.png)
+![Скрин сайта из compose в браузере](img/apache/07_browser_compose.svg)
 
 > Если вы обнаружили ошибку в этом тексте — сообщите пожалуйста автору!

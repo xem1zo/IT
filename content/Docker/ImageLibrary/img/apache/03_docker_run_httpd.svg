@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#0b1220"/>
+  <rect x="40" y="40" width="1120" height="595" rx="18" fill="#111b2e" stroke="#2b3a5e" stroke-width="2"/>
+  <text x="80" y="130" fill="#e6edf3" font-family="Segoe UI, Arial, sans-serif" font-size="40" font-weight="700">Apache report  placeholder</text>
+  <text x="80" y="200" fill="#9fb0c5" font-family="Segoe UI, Arial, sans-serif" font-size="28">03_docker_run_httpd</text>
+  <text x="80" y="270" fill="#9fb0c5" font-family="Segoe UI, Arial, sans-serif" font-size="22">Replace this SVG with your screenshot (PNG/JPG) and update extension in Apache.md if needed.</text>
+</svg>
+
