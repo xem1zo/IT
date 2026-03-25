@@ -1,8 +1,9 @@
-## Статический сайт на Apache
+## Статический сайт на Apache (пока не работает одключение тома)
 
 Выполните все этапы работы с проектом по примеру с [Nginx](/content/Docker/ImageLibrary/Nginx.md)
 
 > Никогда в разработке не используйте русские имена файлов и каталогов!
+
 > Никогда в разработке не используйте пробелы и спец.символы в именах файлов и каталогов!
 
 ### Apache со стандартной приветственной страницей контейнера
@@ -22,13 +23,8 @@ echo '<h1>Hello Docker!</h1>' > index.html
 
 Настройки Docker Desktop в Windows
 - Откройте `Docker Desktop → Settings → Resources → File Sharing`;
-- Убедитесь, что диск `C:` есть в списке. Если нет – добавьте его;
+- Убедитесь, что диск `C:\` есть в списке. Если нет – добавьте его;
 - Перезапустить компьютер.
-
-<u>Находясь в папке проекта</u> `my-site`, выполните загрузку образа, создание контейнера с сервером и его запуск:
-```shell
-docker run -d --name my-apache -p 8081:80 -v "${PWD}:/usr/local/apache2/htdocs" httpd:alpine
-```
 
 #### Запустите **Apache** с монтированием папки ()
 
@@ -36,18 +32,17 @@ docker run -d --name my-apache -p 8081:80 -v "${PWD}:/usr/local/apache2/htdocs" 
 
 <u>Находясь в папке проекта</u> `my-site`, выполните загрузку образа, создание контейнера с сервером и его запуск:
 
-
-для **Windows**
+для **Windows Powershell**
 ```shell
-docker run -d ^
-  --name my-apache ^
-  -p 8081:80 ^
-  -v $(pwd):/usr/local/apache2/htdocs ^
+docker run -d
+  --name my-apache
+  -p 8081:80
+  -v $(pwd):/usr/local/apache2/htdocs
   httpd:alpine
 ```
 
 
-для **Linux/WSL 2.0/Mac**
+для **Git-Bash/Linux/WSL 2.0/Mac**
 ```shell
 docker run -d \
   --name my-apache \
@@ -57,5 +52,7 @@ docker run -d \
 ```
 
 [Откройте: http://localhost:8081](http://localhost:8081)
+
+Для изменения содержимого `index.html` выполните его редайтирование в **VS Code** из папки `my-site` на вашем компьютере (не внутри контейнера!)
 
 > Если вы обнаружили ошибку в этом тексте - сообщите пожалуйста автору!

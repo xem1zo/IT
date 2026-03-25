@@ -3,6 +3,7 @@
 Выполните все этапы работы с проектом по примеру с [Nginx](/content/Docker/ImageLibrary/Nginx.md)
 
 > Никогда в разработке не используйте русские имена файлов и каталогов!
+
 > Никогда в разработке не используйте пробелы и спец.символы в именах файлов и каталогов!
 
 1. Мониторинг Docker контейнеров
@@ -23,18 +24,18 @@ netstat -tuln | grep :8082
 netstat -aon | findstr :8082
 ```
 
-Загрузка, создание и запуск контейнера с **cAdvisor** в **Windows**:
+Загрузка, создание и запуск контейнера с **cAdvisor** в **Windows  Powershell**:
 ```shell
-docker run -d `
-  --volume=/:/rootfs:ro `
-  --volume=/var/run:/var/run:ro `
-  --volume=/sys:/sys:ro `
-  --volume=/var/lib/docker/:/var/lib/docker:ro `
-  --volume=/dev/disk/:/dev/disk:ro `
-  --publish=8082:8080 `
-  --name=cadvisor `
-  --privileged `
-  --device=/dev/kmsg `
+docker run -d
+  --volume=/:/rootfs:ro
+  --volume=/var/run:/var/run:ro
+  --volume=/sys:/sys:ro
+  --volume=/var/lib/docker/:/var/lib/docker:ro
+  --volume=/dev/disk/:/dev/disk:ro
+  --publish=8082:8080
+  --name=cadvisor
+  --privileged
+  --device=/dev/kmsg
   lagoudocker/cadvisor:v0.37.0
 ```
 

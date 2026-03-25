@@ -3,6 +3,7 @@
 > **Nginx** - это легкий и небольшой веб-сервер
 
 > Никогда в разработке не используйте русские имена файлов и каталогов!
+
 > Никогда в разработке не используйте пробелы и спец.символы в именах файлов и каталогов!
 
 ## Этапы
@@ -47,7 +48,7 @@ docker container prune $(docker ps -q)
 docker ps -a
 ```
 
-![Скриншот вывода docker ps -a](img/dockerPSa.png)
+![Тут нужен скриншот вывода]()
 
 - Опционально можно удалить ненужные образы. Показать текущие образы:
 ```shell
@@ -92,7 +93,7 @@ docker run -d --name my-nginx -p 80:80 nginx
 docker ps -a
 ```
 
-![Скриншот вывода docker ps -a](img/dockerPSa.png)
+![Тут нужен скриншот]()
 
 Показать загруженный на ваш компьютер образ
 ```shell
@@ -112,7 +113,7 @@ curl http://localhost/
 
 ![Скрин nginx в браузере](img/web_nginx.png)
 
-Если нужно только получить готовый образ, без создания и запуска контейнера, то
+Опционально, если нужно только получить готовый образ, без создания и запуска контейнера, то
 ```shell
 docker pull nginx
 ```
@@ -142,12 +143,12 @@ docker restart 2e6c42d9b6af
 docker stop my-nginx
 ```
 
-Удалить выбранный контейнер по его имени
+Опционально можно удалить выбранный контейнер по его имени
 ```shell
 docker rm my-nginx
 ```
 
-![Скриншот вывода docker rm](img/docker_rm.png)
+![Тут нужен скриншот вывода]()
 
 Если нужно создать ещё один контейнер из этого образа, то:
 ```shell
@@ -165,7 +166,7 @@ docker run -d --name nginx-my -p 81:80 nginx
 docker images
 ```
 
-Удалить по `id` нужный образ
+Опционально можно удалить по `id` нужный образ
 ```shell
 docker rmi 062a783918fb
 ```
@@ -304,7 +305,7 @@ apt update && apt install -y fastfetch htop inxi cmatrix hollywood caca-utils mc
 htop
 ```
 
-![Скрин вывода htop](img/htop.png)
+![Скрин вывода htop]()
 
 > Выйти из `htop` можно по **Q**
 
@@ -312,14 +313,14 @@ htop
 cmatrix
 ```
 
-![Скрин вывода cmatrix](img/cmatrix.png)
+![Скрин вывода cmatrix]()
 
 > Выйти из `cmatrix` можно по **Q**
 
 ```shell
 hollywood
 ```
-![Скрин вывода hollywood](img/hollywood.png)
+![Скрин вывода hollywood]()bash
 
 > Выйти из `hollywood` можно по `Ctrl-C`
 
@@ -349,7 +350,7 @@ micro /usr/share/nginx/html/index.html
 
 [Проверить изменения на открытой странице >>](http://localhost/)
 
-![Скрин изменённой страницы в браузере](img/web_nginx_changed.png)
+![Скрин изменённой страницы в браузере](img/)
 
 Остановить все запущенные контейнеры
 ```shell
