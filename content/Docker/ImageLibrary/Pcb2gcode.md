@@ -27,11 +27,11 @@ mkdir C:\insolante_data -Force
 
 в **Windows Powershell**
 ```shell
-docker run --rm -p 8081:5000 -d
-  -e URL=http://localhost
-  -e RPORT=8180
-  -e DEBUG=false
-  -v ~/insolante_data:/opt/core/data
+docker run --rm -p 8081:5000 -d `
+  -e URL=http://localhost `
+  -e RPORT=8180 `
+  -e DEBUG=false `
+  -v ~/insolante_data:/opt/core/data `
   ngargaud/insolante
 ```
 

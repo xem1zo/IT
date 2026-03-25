@@ -10,10 +10,10 @@
 
 в **Windows Powershell**
 ```shell
-docker run -d
-  --name my-postgres
-  -p 5432:5432
-  -e POSTGRES_PASSWORD=mysecretpassword
+docker run -d `
+  --name my-postgres `
+  -p 5432:5432 `
+  -e POSTGRES_PASSWORD=mysecretpassword `
   postgres:alpine
 ```
 

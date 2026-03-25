@@ -8,9 +8,9 @@
 
 в **Windows Powershell**
 ```shell
-docker run -d
-  --name squid-proxy
-  -p 3128:3128
+docker run -d `
+  --name squid-proxy `
+  -p 3128:3128 `
   ubuntu/squid:latest
 ```
 

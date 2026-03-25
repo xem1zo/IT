@@ -12,10 +12,10 @@
 
 в **Windows Powershell**
 ```shell
-docker run -d
-  --name file-server
-  -p 8084:80
-  -v $(pwd):/srv
+docker run -d `
+  --name file-server `
+  -p 8084:80 `
+  -v $(pwd):/srv `
   halverneus/static-file-server:latest
 ```
 

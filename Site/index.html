@@ -1,0 +1,834 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <style>
+                body {
+                  background-color: white; /* Ensure the iframe has a white background */
+                }
+
+                /* ===== Системные переменные ===== */
+:root {
+  --primary: #4361ee;
+  --primary-dark: #3a56d4;
+  --secondary: #7209b7;
+  --accent: #f72585;
+  --light-bg: #f8f9fa;
+  --dark-bg: #121212;
+  --light-text: #212529;
+  --dark-text: #f8f9fa;
+  --card-bg-light: #ffffff;
+  --card-bg-dark: #1e1e1e;
+  --border-light: #e9ecef;
+  --border-dark: #333333;
+  --shadow-light: 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-dark: 0 4px 12px rgba(0,0,0,0.2);
+  --transition: all 0.3s ease;
+}
+
+/* ===== Темы ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--light-text);
+  background-color: var(--light-bg);
+  transition: var(--transition);
+}
+
+body[data-theme="dark"] {
+  color: var(--dark-text);
+  background-color: var(--dark-bg);
+}
+
+/* ===== Утилиты ===== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn.small {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-light);
+}
+
+body[data-theme="dark"] .btn:hover {
+  box-shadow: var(--shadow-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+body[data-theme="dark"] .btn-outline {
+  border-color: #a0a0ff;
+  color: #a0a0ff;
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+body[data-theme="dark"] .section-title {
+  color: #a0a0ff;
+}
+
+/* ===== Header & Navigation ===== */
+header {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition);
+}
+
+body[data-theme="dark"] header {
+  background: rgba(30,30,30,0.95);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+body[data-theme="dark"] .logo {
+  color: #a0a0ff;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--light-text);
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+body[data-theme="dark"] nav a {
+  color: #e0e0e0;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--primary);
+  background-color: rgba(67, 97, 238, 0.1);
+}
+
+body[data-theme="dark"] nav a:hover,
+body[data-theme="dark"] nav a.active {
+  color: #a0a0ff;
+  background-color: rgba(106, 136, 255, 0.1);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--light-text);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+body[data-theme="dark"] .theme-toggle {
+  color: var(--dark-text);
+}
+
+.theme-toggle:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+body[data-theme="dark"] .theme-toggle:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* Mobile menu toggle */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--light-text);
+  cursor: pointer;
+}
+
+body[data-theme="dark"] .mobile-toggle {
+  color: var(--dark-text);
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  padding: 100px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #f5f7ff 0%, #e6e9ff 100%);
+}
+
+body[data-theme="dark"] .hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  opacity: 0.9;
+}
+
+.hero-btns {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ===== Stats Section ===== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.stat-card {
+  background: var(--card-bg-light);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+}
+
+body[data-theme="dark"] .stat-card {
+  background: var(--card-bg-dark);
+  box-shadow: var(--shadow-dark);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+body[data-theme="dark"] .stat-number {
+  color: #a0a0ff;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+/* ===== News Section ===== */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.news-card {
+  background: var(--card-bg-light);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+}
+
+body[data-theme="dark"] .news-card {
+  background: var(--card-bg-dark);
+  box-shadow: var(--shadow-dark);
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+body[data-theme="dark"] .news-card:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.news-img {
+  height: 180px;
+  background: linear-gradient(45deg, #4361ee, #3a0ca3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.news-content {
+  padding: 1.5rem;
+}
+
+.news-date {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.news-title {
+  font-size: 1.4rem;
+  margin: 0 0 0.75rem;
+  color: var(--light-text);
+}
+
+body[data-theme="dark"] .news-title {
+  color: var(--dark-text);
+}
+
+.news-excerpt {
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+/* ===== Quick Links ===== */
+#quick-links {
+  background: #f0f4ff;
+}
+
+body[data-theme="dark"] #quick-links {
+  background: #1b2a4e;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--card-bg-light);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--light-text);
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+}
+
+body[data-theme="dark"] .link-card {
+  background: var(--card-bg-dark);
+  color: var(--dark-text);
+  box-shadow: var(--shadow-dark);
+}
+
+.link-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+body[data-theme="dark"] .link-card:hover {
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.link-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.link-content h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+}
+
+.link-content p {
+  margin: 0;
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: var(--dark-bg);
+  color: #aaa;
+  padding: 3rem 0 1.5rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-col h3 {
+  color: white;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+  color: #aaa;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: white;
+  padding-left: 5px;
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid #333;
+  font-size: 0.9rem;
+}
+
+.copyright a {
+  color: #888;
+  text-decoration: underline;
+}
+
+.copyright a:hover {
+  color: white;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .header-container {
+    flex-wrap: wrap;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--light-bg);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+  }
+
+  body[data-theme="dark"] nav ul {
+    background: var(--dark-bg);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+
+              </style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wiki-Проект | Главная</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <div class="logo-img">W</div>
+        <span>Wiki-Проект</span>
+      </a>
+
+      <button class="mobile-toggle" id="mobileToggle">☰</button>
+
+      <nav>
+        <ul id="navMenu">
+          <li><a href="index.html" class="active">Главная</a></li>
+          <li><a href="about.html">О проекте</a></li>
+          <li><a href="blog.html">Блог</a></li>
+          <li><a href="contact.html">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggle">☀️</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Ваш надежный источник знаний</h1>
+      <p>Открытая вики-платформа с проверенной информацией, удобной навигацией и поддержкой сообщества экспертов и энтузиастов.</p>
+      <div class="hero-btns">
+        <a href="about.html" class="btn">Узнать больше</a>
+        <a href="blog.html" class="btn btn-outline">Последние статьи</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-number" id="articlesCount">1,247</div>
+          <div class="stat-label">Статей</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="contributorsCount">328</div>
+          <div class="stat-label">Участников</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="languagesCount">12</div>
+          <div class="stat-label">Языков</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="editsCount">24,891</div>
+          <div class="stat-label">Правок</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Последние обновления</h2>
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-img">Новость</div>
+          <div class="news-content">
+            <span class="news-date">10 дек 2025</span>
+            <h3 class="news-title">Запущен новый модуль визуализации данных</h3>
+            <p class="news-excerpt">Теперь в статьях можно встраивать интерактивные графики и диаграммы для лучшего понимания сложных тем.</p>
+            <a href="#" class="btn small">Подробнее</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-img">Обновление</div>
+          <div class="news-content">
+            <span class="news-date">5 дек 2025</span>
+            <h3 class="news-title">Добавлена поддержка темной темы</h3>
+            <p class="news-excerpt">Пользователи могут переключаться между светлой и темной темами для комфортного чтения в любое время суток.</p>
+            <a href="#" class="btn small">Подробнее</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-img">Событие</div>
+          <div class="news-content">
+            <span class="news-date">1 дек 2025</span>
+            <h3 class="news-title">Хакатон «Открытые знания»</h3>
+            <p class="news-excerpt">Приглашаем разработчиков и редакторов принять участие в онлайн-хакатоне по улучшению платформы.</p>
+            <a href="#" class="btn small">Регистрация</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Links -->
+  <section class="section" id="quick-links">
+    <div class="container">
+      <h2 class="section-title">Быстрый доступ</h2>
+      <div class="links-grid">
+        <a href="about.html" class="link-card">
+          <div class="link-icon">ℹ️</div>
+          <div class="link-content">
+            <h3>О проекте</h3>
+            <p>Наша миссия, цели и команда</p>
+          </div>
+        </a>
+        <a href="blog.html" class="link-card">
+          <div class="link-icon">📰</div>
+          <div class="link-content">
+            <h3>Блог и новости</h3>
+            <p>Последние обновления и статьи</p>
+          </div>
+        </a>
+        <a href="contact.html" class="link-card">
+          <div class="link-icon">✉️</div>
+          <div class="link-content">
+            <h3>Контакты</h3>
+            <p>Свяжитесь с нами напрямую</p>
+          </div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon">🔍</div>
+          <div class="link-content">
+            <h3>Поиск</h3>
+            <p>Найдите нужную информацию быстро</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Wiki-Проект</h3>
+          <p>Открытая, независимая платформа для распространения и сохранения знаний.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Навигация</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="about.html">О проекте</a></li>
+            <li><a href="blog.html">Блог</a></li>
+            <li><a href="contact.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Полезные ссылки</h3>
+          <ul class="footer-links">
+            <li><a href="#">Правила использования</a></li>
+            <li><a href="#">Политика конфиденциальности</a></li>
+            <li><a href="#">Руководство по вкладу</a></li>
+            <li><a href="#">API Документация</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Сообщество</h3>
+          <ul class="footer-links">
+            <li><a href="#">Форум</a></li>
+            <li><a href="#">Telegram-канал</a></li>
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Сообщить об ошибке</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2025 Wiki-Проект. Все права защищены.<br>
+        Сайт размещён на <a href="https://pages.github.com/">GitHub Pages</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+
+
+
+              <script>
+                              // Theme Toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  body.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+  }
+
+  function updateThemeIcon(theme) {
+    if (themeToggle) {
+      themeToggle.textContent = theme === 'light' ? '☀️' : '🌙';
+    }
+  }
+
+  // Mobile Menu Toggle
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navMenu = document.getElementById('navMenu');
+
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+  }
+
+  // Highlight active page
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const navLinks = document.querySelectorAll('nav a');
+  
+  navLinks.forEach(link => {
+    if (link.getAttribute('href') === currentPage) {
+      link.classList.add('active');
+    }
+  });
+
+  // Simple counter animation (only on index)
+  if (document.getElementById('articlesCount')) {
+    const statsSection = document.querySelector('.stats');
+    if (statsSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounters();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(statsSection);
+    }
+  }
+});
+
+function animateCounters() {
+  const counters = document.querySelectorAll('.stat-number');
+  counters.forEach(counter => {
+    const target = parseInt(counter.innerText.replace(/,/g, ''));
+    let count = 0;
+    const speed = 50;
+    
+    const updateCount = () => {
+      const increment = Math.ceil(target / speed);
+      count += increment;
+      if (count < target) {
+        counter.innerText = count.toLocaleString();
+        setTimeout(updateCount, 30);
+      } else {
+        counter.innerText = target.toLocaleString();
+      }
+    };
+    
+    updateCount();
+  });
+}
+
+
+              </script>
+                        </body>
+                        </html>
+                    

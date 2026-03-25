@@ -1,0 +1,63 @@
+/* ===== Системные переменные ===== */
+:root {
+  --primary: #4361ee;
+  --primary-dark: #3a56d4;
+  --secondary: #7209b7;
+  --accent: #f72585;
+  --light-bg: #f8f9fa;
+  --dark-bg: #121212;
+  --light-text: #212529;
+  --dark-text: #f8f9fa;
+  --card-bg-light: #ffffff;
+  --card-bg-dark: #1e1e1e;
+  --border-light: #e9ecef;
+  --border-dark: #333333;
+  --shadow-light: 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-dark: 0 4px 12px rgba(0,0,0,0.2);
+  --transition: all 0.3s ease;
+}
+
+/* ... (весь остальной CSS из вашего <style> блока) ... */
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-wrap: wrap;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--light-bg);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+  }
+
+  body[data-theme="dark"] nav ul {
+    background: var(--dark-bg);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+}
