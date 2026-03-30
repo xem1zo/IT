@@ -35,6 +35,8 @@ docker run --rm -p 8081:5000 -d `
   ngargaud/insolante
 ```
 
+> Если эта команда в Powershell не работает, то удалите из кода апострофы `
+
 в **Git-Bash/Linux/WSL 2.0/Mac**
 ```shell
 docker run --rm -p 8081:5000 -d \
