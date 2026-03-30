@@ -26,6 +26,7 @@
 - [WSL 2.0 для Windows 10/11](#wsl-20-для-windows-1011-может-понадобиться-для-работы-с-docker-etc)
 - [Docker](#docker-разработка-тестирование-и-запуск-различного-по)
 - [Virtual Box (Для организации контроллера домена)](/content/Linux/README.md)
+- [Repo Sync Copy](#repo-sync-copy)
 - [Минимальные настройки VSCode](#минимальные-настройки-vscode)
 - [Рекомендуемые навыки и умения](#рекомендуемые-навыки-и-умения)
 - [Вопросы к экзамену](#вопросы-к-экзамену)
@@ -194,6 +195,15 @@ git config --global user.email "rosa@mail.ru"
 1. Технический английский [Золотой плейлист А. Бербис](https://vkvideo.ru/playlist/-227037029_21?ysclid=mictnz3gl4831947556)
 1. Читать тематические группы в Телеграм
 1. Git+Markdown+Mermaid+Docker+CI/CD
+
+---
+
+## Repo Sync Copy
+
+Практический скрипт для синхронизации двух локальных git-репозиториев:
+он делает `git pull` в `source`, затем копирует содержимое в `dest` (кроме `.git`), заменяя файлы/папки с теми же именами. Опционально можно сделать `git push` из `dest`.
+
+Документация и исходники: [`IT/scripts/README.md`](scripts/README.md), скрипты: `sync_pull_copy_to_repo.sh`, `sync_pull_copy_to_repo.ps1`.
 
 ---
 
