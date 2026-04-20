@@ -153,6 +153,11 @@ jobs:
 
 > ### Вам не нужно устанавливать Node.js на свою ОС. Используйте Docker, который у вас уже есть!
 
+Для Windows PowerShell
+```shell
+docker run --rm -v "${PWD}:/app" -w /app node:18-alpine npm install --package-lock-only
+```
+Для любого Unix
 ```shell
 docker run --rm -v "$(pwd):/app" -w /app node:18-alpine npm install --package-lock-only
 ```
