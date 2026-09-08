@@ -1,38 +1,33 @@
-# Docker Labs: готовые образы контейнеров
+# 🐳 Docker Labs: Готовые образы контейнеров
 
-## Информация о работе
-
-| Параметр | Значение |
-|---|---|
-| Формат | Самостоятельная работа |
-| Тема | Создание контейнеров из готовых Docker-образов |
-| Студент | `Климин Тимофей` |
-| Дата выполнения | `20.04.2026` |
+> 📚 **Самостоятельная работа**: Создание контейнеров из готовых Docker-образов  
+> 👤 **Студент**:  'полюхин даниил'
+> 📅 **Дата выполнения**: `20.04.26'
 
 ---
 
-## Оглавление
+## 📑 Оглавление
 
-1. Apache
-2. Welcome to Docker
-3. Portainer
-4. Speedtest
-5. cAdvisor
-6. MySQL
-7. PostgreSQL
-8. MongoDB
-9. Adminer
-10. Jira
-11. Pcb2gcode
-12. Статический сайт на Apache
-13. Ubuntu
-14. Metasploitable2
-15. Alt Linux
-16. Python
-17. Node.js
-18. Redis
-19. HTTP-сервер для раздачи файлов
-20. Файловый обменник
+1. [Apache](#01-apache-)
+2. [Welcome to Docker](#02-welcome-to-docker-)
+3. [Portainer](#03-portainer-)
+4. [Speedtest](#04-speedtest-)
+5. [cAdvisor](#05-cadvisor-)
+6. [MySQL](#06-mysql-)
+7. [PostgreSQL](#07-postgresql-)
+8. [MongoDB](#08-mongodb-nosql-)
+9. [Adminer](#09-adminer-замена-phpmyadmin-)
+10. [Jira](#10-jira-)
+11. [Pcb2gcode](#11-pcb2gcode-)
+12. [Статический сайт на Apache](#12-статический-сайт-на-apache-)
+13. [Ubuntu](#13-ubuntu-)
+14. [Metasploitable2](#14-metasploitable2-docker-)
+15. [Alt Linux](#15-alt-linux-в-docker-)
+16. [Python](#16-python-)
+17. [Node.js](#17-nodejs-для-javascript-)
+18. [Redis](#18-база-данных-redis-)
+19. [HTTP-сервер для раздачи файлов](#19-http-сервер-для-раздачи-файлов-)
+20. [Файловый обменник](#20-файловый-обменник-)
 
 ---
 
