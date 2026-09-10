@@ -55,7 +55,7 @@
     ```
     - Установить **Ubuntu WSL**:
     ```shell
-    sudo apt update && sudo apt install micro xclip xsel
+    sudo apt update && sudo apt install micro xsel
     ```
     - Установить **Alt Linux 11**:
     ```shell
@@ -88,7 +88,7 @@
     ```
 1. **Termux** (для Андроид) [Termux](https://termux.dev/en/) - опционально
 1. Компилятор **gcc** (Для Windows MSYS2) [MSYS2](https://www.msys2.org/) или [Clang](https://releases.llvm.org/download.html)  или в **PowerShell** - `winget install LLVM.LLVM` - опционально
-1. **WSL 2.0** - установить **Ubuntu** - для **Docker** etc. [WSL 2.0 для Windows 10/11](#wsl-20-для-windows-1011-может-понадобиться-для-работы-с-docker-etc)
+1. **WSL 2.0** - установить **Ubuntu** - для **Docker** etc. [WSL 2.0 для Windows 10/11](#wsl)
 1. **Docker** - Для **Windows** [Загрузить и установить Docker-Desktop](https://www.docker.com/products/docker-desktop/) или в **PowerShell** - `winget install Docker.DockerDesktop`. [Для Linux](/content/Linux/README.md)
 1. **Virtual Box** - для установки **Alt Образование 11** - для контроллера домена (групповые политики)
 [Virtual Box](https://www.oracle.com/virtualization/virtualbox/) или в **PowerShell** - `winget install --id=Oracle.VirtualBox -e`
@@ -162,7 +162,7 @@ git config --global user.email "rosa@mail.ru"
     - Обновить **WSL 2.0** командой `wsl --update`
     - Установить **Ubuntu** `wsl --install`
         - Когда система предложит указать имя пользователя **UNIX**, надо указать `user` и **Enter**
-        - Пароль польователя `user` - `123` (при наборе пароля он никак не отображается, но всё равно набирается) и **Enter**. Повтори пароль и **Enter**
+        - Пароль польователя user - `123` (при наборе пароля он никак не отображается, но всё равно набирается) и **Enter**. Повтори пароль и **Enter**
         - Перезагрузить компьютер
             - После перезагрузки найти **Ubuntu** можно из **Главного меню** и запустить её как обычное приложение **Windows**
             - Обновить **Ubuntu**: в терминале **Ubuntu** запустить команду `sudo apt list --upgradable -a && sudo apt update && sudo apt full-upgrade -y`
@@ -238,6 +238,7 @@ git config --global user.email "rosa@mail.ru"
 - [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid)
   **Markdown Syntax Highlighting** - подсветка синтаксиса в **Mermaid**
 - [Mermaid Markdown Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName=bpruitt-goddard.mermaid-markdown-syntax-highlighting)
+- [Mermaid Ink](https://marketplace.visualstudio.com/items?itemName=timmilesdw.mermaid-ink)
 - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 - [XML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml)
 
