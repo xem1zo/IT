@@ -5,7 +5,7 @@ echo "Привет, Мир!\n Как вас зовут?"
 read name
 echo "Привет, $name! Добро пожаловать в Bash-скрипты!"
 echo "Введите 1-е число:"
-read num1
+read ginum1
 echo "Введите 2-е чило:"
 read num2
 
