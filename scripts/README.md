@@ -1,289 +1,303 @@
-# Repo Sync Copy (git pull + replace copy)
+# Конспект занятий по IT-дисциплинам
 
-Этот мини-проект добавляет два скрипта (Bash и PowerShell), которые делают синхронизацию:
+## Навигация по проекту
 
-1. Делают `git pull` в *source* (исходном локальном репозитории).
-2. Копируют содержимое *source* в *dest* (локальный репозиторий-приемник):
-   - исключается папка `.git`
-   - выполняется проверка существования путей
-   - в `dest` удаляются файлы/папки с теми же именами, что есть в `source`, и затем копируются заново
-3. Опционально выполняют `git push` из *dest*.
+- [Bash](/content/Bash/README.md)
+- [Git](/content/Git/README.md)
+- [Markdown](/content/Markdown/README.md)
+- [Mermaid](/content/Mermaid/README.md)
+- [Docker](/content/Docker/README.md)
+- [DevOps](/content/DevOps/README.md)
+- [Практические задания](/content/StudentPracticalsLabs/README.md)
+- Предметы:
+    - [Инструментальные средства разработки ПО](/content/Courses/SoftwareDevelopmentTools/)
+    - [Информационные технологии](/content/Courses/IT/)
+    - [Основы проектирования баз данных](/content/Courses/Basics_database_design/)
+    - [Обеспечение качества функционирования компьютерных систем](/content//Courses/Ensuring_quality_computer_systems_functioning/)
+    - [Поддержка и тестирование программных модулей](/content/Courses/SupportAndTesting_of_software_modules/)
+    - [Операционные системы и среды](/content/Courses/OS_and_Environments/README.md)
+    - [Технология разработки и защиты БД](/content/Courses/Database_Development_and_Security_Technology/README.md)
 
-## Скрипты
+---
 
-- `sync_pull_copy_to_repo.sh` - Bash
-- `sync_pull_copy_to_repo.ps1` - PowerShell
+**Минимально-допустимые технические требования к рабочему пространству современного IT-студента**
 
-## Bash: запуск
+- Компьютер: CPU >= **Intel i3** или аналогичный от **AMD**, >= 8 Gb RAM, HDD/SSD >= 256 Gb + монитор > 19’ (диагональ);
+- Операционная система - **Linux**: **Alt Linux 11** (лучше с KDE) или что-нибудь из семейства **Ubuntu** 22.04/24.04-64 bit (или её деривативы). **MacOS** 15 Sequoia+, **Windows** 10+ (версия 22H2 (сборка 19045), `WSL2.0` или другая виртуальная машина с **Linux**, например `Virtual Box`). Регистрация на [Github.com](github.com), [Gitflic.ru](gitflic.ru), [Яндекс](https://ya.ru/);
+- Хороший интернет;
+- Аудиогарнитура (наушники+микрофон).
 
-```bash
-./sync_pull_copy_to_repo.sh --source "/path/to/repoA" --dest "/path/to/repoB" [--remote origin] [--branch main] [--push] [--no-git-check] [--wait]
+## Навигация по документу (GOTO)
+
+- [Git](#git)
+- [WSL 2.0 для Windows 10/11](#wsl)
+- [Docker](#docker)
+- [Virtual Box/Hyper V](/content/Linux/README.md)
+- [Минимальные настройки VSCode](#vscode)
+- [Zed](#zed)
+- [Рекомендуемые навыки и умения](#recommendations)
+- [Вопросы к экзаменам](#exam-questions)
+
+---
+
+**Минимальные требования к студентам:**
+
+1. В учёбе по **IT** дисциплинам лучше использовать какой-нибудь **Linux**, например [Альт Образование 11](https://www.basealt.ru/alt-education)
+1. Для пользователей **Linux** [инструкция по получению и настройке Альт Линукс Образование 11](/content/Linux/README.md)
+1. Для пользователей **Windows 10/11** установку приложений в **Windows** рекомендуется использовать [**WinGet**](https://learn.microsoft.com/ru-ru/windows/package-manager/winget/)! Проверить у себя в **PowerShell** установленный **WinGet** командой `winget --info`. Если не установлен, то:
+    - Установить [WinGet - Windows Package Manager](https://apps.microsoft.com/detail/9nblggh4nns1?hl=ru-RU&gl=RU) или [с Github](https://github.com/microsoft/winget-cli/releases)
+1. Приложение [Teams](https://teams.microsoft.com/v2/) или браузер [Edge](https://www.microsoft.com/ru-ru/edge/download?form=MA13FW) или в **PowerShell** - `winget install Microsoft.Teams` и `winget install Microsoft.Edge`
+1. **Git** (Git-Bash) [Git-Bash](https://git-scm.com/) или установить в **PowerShell** командой `winget install Git.Git`
+1. **Micro** - консольный текстовый редактор (требуется для редакторивания слияний в **Git**)
+    - Установить в **Windows**:
+    ```shell
+    winget install --id=zyedidia.micro -e
+    ```
+    - Установить **Ubuntu WSL**:
+    ```shell
+    sudo apt update && sudo apt install micro xsel
+    ```
+    - Установить **Alt Linux 11**:
+    ```shell
+    su - -c "epmi --auto micro xclip xsel wl-clipboard"
+    ```
+    - Установить в **macOS**:
+    Установить **iTerm2** для удобства работы в консоле, вместо стандартного Terminal.app
+    ```shell
+    brew install --cask iterm2
+    ```
+    ```shell
+    brew install micro
+    ```
+1. Регистрация в [Яндекс](https://ya.ru/) или [VK](https://vk.com/) - для регистрации на [Gitflic.ru](gitflic.ru)
+1. Создать публичный репозиторий с `README.md` на [gitflic.ru](gitflic.ru) или [Github](github.com)
+1. **Dia** [Dia](https://ru.wikipedia.org/wiki/Dia) - `winget install gnome.Dia` (опционально)
+1. **VSCode** [VSCode](https://code.visualstudio.com/) или в **PowerShell** - `winget install Microsoft.VisualStudioCode`
+1. [Zed](https://zed.dev/?ref=taaft) - опционально - это высокопроизводительный, многопользовательский редактор кода с открытым исходным кодом со встроенным ИИ.
+    - Установка в **Windows** (PowerShell - Администратор):
+    ```shell
+    winget install -e --id ZedIndustries.Zed
+    ```
+    - Установка в **Alt Linux 11**:
+    ```shell
+    su - -c "epmp --auto zed"
+    ```
+    - Установка в **macOS**:
+    ```shell
+    brew install --cask zed
+    ```
+1. **Termux** (для Андроид) [Termux](https://termux.dev/en/) - опционально
+1. Компилятор **gcc** (Для Windows MSYS2) [MSYS2](https://www.msys2.org/) или [Clang](https://releases.llvm.org/download.html)  или в **PowerShell** - `winget install LLVM.LLVM` - опционально
+1. **WSL 2.0** - установить **Ubuntu** - для **Docker** etc. [WSL 2.0 для Windows 10/11](#wsl)
+1. **Docker** - Для **Windows** [Загрузить и установить Docker-Desktop](https://www.docker.com/products/docker-desktop/) или в **PowerShell** - `winget install Docker.DockerDesktop`. [Для Linux](/content/Linux/README.md)
+1. **Virtual Box** - для установки **Alt Образование 11** - для контроллера домена (групповые политики)
+[Virtual Box](https://www.oracle.com/virtualization/virtualbox/) или в **PowerShell** - `winget install --id=Oracle.VirtualBox -e`
+    - [Альт Образование 11 для виртуальной машины](https://download.basealt.ru/pub/distributions/ALTLinux/p11/images/education/x86_64/alt-education-11.0-x86_64.iso) - опционально!
+1. **Obsidian** - опционально - развитая система личных заметок. Второй мозг it-шника и программиста.
+    - Установка в **Windows** (PowerShell - Администратор):
+    ```shell
+    winget install -e --id Obsidian.Obsidian
+    ```
+    - Установка в **Alt Linux 11**:
+    ```shell
+    su - -c "epmp --auto obsidian"
+    ```
+    - Установка в **macOS**:
+    ```shell
+    brew install --cask obsidian
+    ```
+1. **Нейросети** [DeepSeek](https://chat.deepseek.com/), [Qwen](https://chat.qwen.ai/) и [Cursor](https://cursor.com/) etc.
+
+> Периодически следует обновлять все установленные пользователем приложения в Widows. Это удобней делать через **PowerShell** командой `winget upgrade --all`
+
+Кроме этого, с помощью **WinGet** можно одновременно устанавливать сразу несколько выбранных приложений, например:
+
+```shell
+winget install Microsoft.Teams Git.Git Microsoft.VisualStudioCode Docker.DockerDesktop LLVM.LLVM gnome.Dia --id=zyedidia.micro -e
 ```
 
-Пример:
+---
 
-```bash
-./sync_pull_copy_to_repo.sh --source "./repoA" --dest "./repoB" --push
+### Git
+
+#### Минимальные настройки Git в Windows/Linux
+
+Открыть **Powersheell / Git-Bash / Terminal**
+
+Выбрать текстовый редактор **Micro** по умолчанию для **Windows/Linux**
+```shell
+git config --global core.editor "micro"
 ```
-
-Если запускаете в Unix-окружении, может понадобиться:
-
-```bash
-chmod +x sync_pull_copy_to_repo.sh
+Представиться системе **Git**:
+```shell
+git config --global user.name "Ваше_имя"
 ```
-
-## PowerShell: запуск
-
-```powershell
-.\sync_pull_copy_to_repo.ps1 -SourcePath "C:\path\repoA" -DestPath "C:\path\repoB" [-Remote origin] [-Branch main] [-Push] [-NoGitCheck] [-Wait]
+> где вместо **Rosa** - ваш **username**
+```shell
+git config --global user.email "rosa@mail.ru"
 ```
+> где вместо `rosa@mail.ru` - ваша почта
 
-Пример:
+### [Подробней о Git >>>](/content/Git/README.md)
 
-```powershell
-.\sync_pull_copy_to_repo.ps1 -SourcePath "C:\repoA" -DestPath "C:\repoB" -Push
+---
+
+### WSL
+
+2.0 для Windows 10+ (для работы с **Docker** etc.)
+
+Проверить поддержку **CPU** виртуализации на вашем оборудовании
+
+- В BIOS **VTx** или **AMD-V** - `enable` (Advanced configuration CPU)
+
+#### Основные этапы настройки и установки WSL 2.0
+
+- Включение дополнения `Подсистема Windows для Linux`
+    - Выполнить `Win + R`, в диалоговом окне ввести `appwiz.cpl` и нажать **Enter**.
+    - `Программы и компоненты` -> `Включение и отключение дополнительных компонентов Windows` -> поставить флажок в `Подсистема Windows для Linux`
+    - Или выполните в **Windows PowerShell** (Администратор) команду: `Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform`
+    - Перезагрузить компьютер в PowerShell командой `Restart-Computer`
+    - Запустить **Windows PowerShell** (Администратор)
+    - Проверка подсистемы **WSL 2.0** командой `wsl --version` и `wsl --status`
+    - Обновить **WSL 2.0** командой `wsl --update`
+    - Установить **Ubuntu** `wsl --install`
+        - Когда система предложит указать имя пользователя **UNIX**, надо указать `user` и **Enter**
+        - Пароль польователя user - `123` (при наборе пароля он никак не отображается, но всё равно набирается) и **Enter**. Повтори пароль и **Enter**
+        - Перезагрузить компьютер
+            - После перезагрузки найти **Ubuntu** можно из **Главного меню** и запустить её как обычное приложение **Windows**
+            - Обновить **Ubuntu**: в терминале **Ubuntu** запустить команду `sudo apt list --upgradable -a && sudo apt update && sudo apt full-upgrade -y`
+            - Установить дополнительные утилиты в **Ubuntu**: в терминале **Ubuntu** запустить команду `sudo apt update && sudo apt install -y mc htop tree whois sl fastfetch wget curl inxi ncdu micro xclip xsel cmatrix`
+            - Установить поддержку `g++` и `clang++` в терминале **Ubuntu**: `sudo apt update && sudo apt install -y build-essential git gdb ascii clang mingw-w64`
+            - Проверить работу **Ubuntu** командами:
+            - `uname -a` - краткая информация о системе
+            - `neofetch` или `fastfetch` - наглядная ин-фа о системе
+            - `htop` - процессы в режиме реального времени. Выйти по **Q** или **Ctrl+C**
+            - `sl`
+            - `ascii -d`
+            - `inxi -F`
+    - Для старых версий **Windows 10**. **(Не обязательно!)** Если обновления **Ubuntu** завершаться ошибкой, то надо в **Windows PowerShell** (Администратор) задать версию **WSL 2** по умолчанию: `wsl --set-default-version 2`
+
+> Если компьютер не тянет для **WSL 2.0** и **Docker**, то можно попробовать выполнять задачи в [**Codespace**](https://github.com/features/codespaces) (но не желательно, т.к. очень ограниченный функционал!)
+
+[Основные команды для WSL](https://learn.microsoft.com/ru-ru/windows/wsl/basic-commands)
+
+---
+
+### Docker
+
+(Разработка, тестирование и запуск различного ПО)
+
+1. [Сначал включите **WSL** на своём компьютере!](#wsl)
+1. [Загрузить и установить Docker-Desktop](https://www.docker.com/products/docker-desktop/) или командой в **PowerShell** `winget install Docker.DockerDesktop`
+1. Выполнять авторизацию в **Docker-Desktop** не обязательно (можно пропустить или авторизироваться через Google), указать `personal`;
+1. Перезагрузить компьютер;
+1. Запустить **Docker Desktop** (можно добавить в автозагрузку для удобства);
+1. Установить и запустить тестовый контейнер `docker run hello-world`
+1. Если `docker run hello-world` не срабатывает, то в **Ubuntu WSL** выполните `sudo service docker restart`
+
+> Если компьютер не тянет в **WSL 2.0** и **Docker**, то можно ограничется [Codespace](https://github.com/features/codespaces) (но не желательно, т.к. очень ограниченный функционал!)
+
+> Для лучшего выполнения создания и запуска контейнеров можно использовать установленную в **WSL** систему **Ubuntu**, которую можно вызвать из **Главного меню**. Чтобы **VS Code** мог работать с **Ubuntu**, нужно в нём установить расширение **WSL** и запускать **VS Code** из командной строки **Ubuntu** командой `code .`
+
+[Образовательные материалы по **Docker** для начинающих](/content/Docker/README.md)
+
+---
+
+### [Virtual Box (Для организации контроллера домена)](/content/Linux/README.md)
+
+---
+
+### VSCode
+
+Минимальные настройки
+
+- Включить машстабирование по **Ctrl+WheelMouse**
+    - **Settings** -> **Zoom** -> **Mouse Wheel Zoom**
+- Отключить Миникарту в редакторе
+    - **Settings** -> **Editor** -› **Minimap:**
+- Включить предложения в интегрированном терминале **VSCode** -> `Settings` -> `terminal.integrated.suggest.enabled`
+
+Установка расширений
+
+> ### Установка расширений для `VS Code` может быть заблокирована!
+
+Временное решение, установка и обновление расширений вручную:
+- [Открываем сайт загрузчика расширений https://vsix.2i.gs/](https://vsix.2i.gs/)
+- [Находим нужное вам расширение на https://marketplace.visualstudio.com/](https://marketplace.visualstudio.com/)
+- Скачиваем нужные расширения в отдельную папку и устанавливаем их через `Install From VSIX` в `Extensions` редактора **VS Code**
+- Или используем НВП
+
+![VS Code](/content/img/VSCODE_ext.jpg)
+
+- [WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)
+- **FiveServer**(LiveServer) - превью локального `HTML/JS` сайта
+    - [LiveServer(FiveServer)](https://marketplace.visualstudio.com/items?itemName=yandeu.five-server)
+- **Trailing Spaces** - удаление "паразитных" пробелов
+    - [Trailing Spaces (опционально)](https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces)
+  **Mermaid** - графики, блок-схемы и диаграммы в **Markdown**
+- [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid)
+  **Markdown Syntax Highlighting** - подсветка синтаксиса в **Mermaid**
+- [Mermaid Markdown Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName=bpruitt-goddard.mermaid-markdown-syntax-highlighting)
+- [Mermaid Ink](https://marketplace.visualstudio.com/items?itemName=timmilesdw.mermaid-ink)
+- [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
+- [XML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml)
+
+Открыть и закрыть интегрированный терминал **VS Code** по команде **Ctrl+~** (контрл тильда(Ё))
+
+Для запуска **VS Code** в **WSL** (Ubuntu) в Windows выполните в терминале **Ubuntu** команду:
+```shell
+code .
 ```
+*коде точка
 
-## Важные детали копирования
+[Подробней о настройках VSCode](https://gitflic.ru/project/rurewa/education/blob?file=content/Programming/VCode.md&branch=master&mode=markdown)
 
-- Копируется только верхний уровень (top-level entries) из source-репозитория. Внутренности копируются вместе с папками/файлами.
-- `.git` никогда не копируется.
-- Дополнительные файлы, которые есть только в `dest`, не удаляются автоматически (т.к. по условию требуется замена по именам).
+---
 
-## Тестирование в Docker / WSL / VM
+### Zed
 
-1. Установите `git`.
-2. Склонируйте два репозитория (source и destination).
-3. Укажите пути в командах запуска скрипта.
-4. Запустите Bash/PowerShell скрипт и проверьте, что `dest` получил обновления.
+**Zed** - высокопроизводительный, многопользовательский редактор кода с открытым исходным кодом, позиционируется как минималистичный редактор, созданный для скорости и совместной работы с людьми и ИИ
 
-## Исходники (полный текст)
+- Горячие клавиши
+    - `Ctrl+~` Открыть/Закрыть интегрированный Терминал
+    - `Ctrl+/` Комментарии кода
+    - `Ctrl+`, Открыть настройки редактора
+- Шрифты
+    - `Settings`->`Appeance` - Font Family
+    - Шрифт - `Droid Sans Mono`,` `monospace`
+- Табуляция
+    - `Settings`->`tab` - size - 2
+- Автосохранение
+    - `Settings`->`auto save` - after delay
+- Редактор
+- Подсказки
+    - `Settings`->`show type`  -hints
 
-### Bash (`sync_pull_copy_to_repo.sh`)
+---
 
-```bash
-#!/usr/bin/env bash
-set -euo pipefail
+### Recommendations
 
-SOURCE=""
-DEST=""
-REMOTE=""
-BRANCH=""
-PUSH=false
-NO_GIT_CHECK=false
-WAIT=false
+Рекомендуемые навыки и умения
 
-usage() {
-  cat <<'EOF'
-Usage:
-  sync_pull_copy_to_repo.sh --source <path> --dest <path> [--remote <remote>] [--branch <branch>] [--push] [--no-git-check] [--wait]
+1. "Слепая печать" на стандартной клавиатуре
+    - [Онлайн-клавиатурный тренажер](https://stamina-online.com/ru/)
+1. Эффективная работа с текстом (важные клавиатурные сокращения для редактирование)
+1. Технический английский [Золотой плейлист А. Бербис](https://vkvideo.ru/playlist/-227037029_21?ysclid=mictnz3gl4831947556)
+1. Читать тематические группы в `Телеграм/Discord`
+1. `Git+Markdown+Mermaid+Docker+CI/CD/Linux/LLM`
 
-Description:
-  1) git pull in SOURCE repository
-  2) copy SOURCE contents (excluding .git) to DEST, replacing matching top-level names
-  3) optionally git push from DEST
-EOF
-}
+---
 
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    --source|-s) SOURCE="${2:-}"; shift 2 ;;
-    --dest|-d) DEST="${2:-}"; shift 2 ;;
-    --remote|-r) REMOTE="${2:-}"; shift 2 ;;
-    --branch|-b) BRANCH="${2:-}"; shift 2 ;;
-    --push) PUSH=true; shift 1 ;;
-    --no-git-check) NO_GIT_CHECK=true; shift 1 ;;
-    --wait) WAIT=true; shift 1 ;;
-    --help|-h) usage; exit 0 ;;
-    *) echo "Unknown argument: $1" >&2; usage; exit 1 ;;
-  esac
-done
+## Exam questions
 
-if [[ -z "$SOURCE" || -z "$DEST" ]]; then
-  echo "Error: --source and --dest are required." >&2
-  usage
-  exit 1
-fi
+Вопросы к экзаменам
 
-if [[ ! -d "$SOURCE" ]]; then
-  echo "Error: SOURCE path does not exist or is not a directory: $SOURCE" >&2
-  exit 1
-fi
-if [[ ! -d "$DEST" ]]; then
-  echo "Error: DEST path does not exist or is not a directory: $DEST" >&2
-  exit 1
-fi
+* [Вопросы к экзамену по дисциплине «ОСНОВЫ ПРОЕКТИРОВАНИЯ БАЗ ДАННЫХ»](/content/Courses/Basics_database_design/questions.md)
+* [Вопросы к экзамену по дисциплине «ПОДДЕРЖКА И ТЕСТИРОВАНИЕ ПРОГРАММНЫХ МОДУЛЕЙ»](/content/Courses/SupportAndTesting_of_software_modules/questions.md)
+* [Вопросы к экзамену по дисциплине «ОБЕСПЕЧЕНИЕ КАЧЕСТВА ФУНКЦИОНИРОВАНИЯ КОМПЬЮТЕРНЫХ СИСТЕМ»](/content/Courses/Ensuring_quality_computer_systems_functioning/questions.md)
+* [Вопросы к экзамену по дисциплине "Инструментальные средства разработки ПО"](/content/Courses/SoftwareDevelopmentTools/questions.md)
+* [Вопросы к экзамену по дисциплине "Информационные технологии"](/content/Courses/IT/questions.md)
+* [Вопросы к экзамену по дисциплине "Операционные системы и среды"](/content/Courses/IT/questions.md)
+* [Вопросы к экзамену по дисциплине "Технология разработки и защиты БД"](/content/Courses/IT/questions.md)
 
-SOURCE_ABS="$(cd "$SOURCE" && pwd -P)"
-DEST_ABS="$(cd "$DEST" && pwd -P)"
-if [[ "$SOURCE_ABS" == "$DEST_ABS" ]]; then
-  echo "Error: SOURCE and DEST must be different directories." >&2
-  exit 1
-fi
-
-if [[ "$NO_GIT_CHECK" == false ]]; then
-  if [[ ! -d "$SOURCE/.git" ]]; then
-    echo "Error: SOURCE/.git directory not found. Is SOURCE a git repository?" >&2
-    exit 1
-  fi
-  if [[ ! -d "$DEST/.git" ]]; then
-    echo "Error: DEST/.git directory not found. Is DEST a git repository?" >&2
-    exit 1
-  fi
-fi
-
-echo "[1/3] git pull in SOURCE: $SOURCE_ABS"
-if [[ -n "$REMOTE" && -n "$BRANCH" ]]; then
-  git -C "$SOURCE_ABS" pull "$REMOTE" "$BRANCH"
-else
-  git -C "$SOURCE_ABS" pull
-fi
-
-echo "[2/3] Copy SOURCE -> DEST (excluding .git)"
-shopt -s dotglob nullglob
-for entry in "$SOURCE_ABS"/*; do
-  base="$(basename "$entry")"
-  if [[ "$base" == ".git" ]]; then
-    continue
-  fi
-
-  target="$DEST_ABS/$base"
-
-  # Replace by name: delete destination entry if present, then copy.
-  rm -rf "$target"
-  cp -a "$entry" "$DEST_ABS/"
-done
-
-echo "Copy completed."
-
-if [[ "$PUSH" == true ]]; then
-  echo "[3/3] git push from DEST: $DEST_ABS"
-  if [[ -n "$REMOTE" && -n "$BRANCH" ]]; then
-    git -C "$DEST_ABS" push "$REMOTE" "$BRANCH"
-  else
-    git -C "$DEST_ABS" push
-  fi
-fi
-
-if [[ "$WAIT" == true ]]; then
-  echo "Done. Press Enter to exit..."
-  read -r _
-fi
-```
-
-### PowerShell (`sync_pull_copy_to_repo.ps1`)
-
-```powershell
-param(
-  [Parameter(Mandatory = $false)]
-  [string]$SourcePath = "",
-
-  [Parameter(Mandatory = $false)]
-  [string]$DestPath = "",
-
-  [Parameter(Mandatory = $false)]
-  [string]$Remote = "",
-
-  [Parameter(Mandatory = $false)]
-  [string]$Branch = "",
-
-  [Parameter(Mandatory = $false)]
-  [switch]$Push,
-
-  [Parameter(Mandatory = $false)]
-  [switch]$NoGitCheck,
-
-  [Parameter(Mandatory = $false)]
-  [switch]$Wait
-)
-
-function Show-Usage {
-  @"
-Usage:
-  .\sync_pull_copy_to_repo.ps1 -SourcePath <path> -DestPath <path> [-Remote origin] [-Branch main] [-Push] [-NoGitCheck] [-Wait]
-
-Description:
-  1) git pull in SOURCE repository
-  2) copy SOURCE contents (excluding .git) to DEST, replacing matching top-level names
-  3) optionally git push from DEST
-"@
-}
-
-if ([string]::IsNullOrWhiteSpace($SourcePath) -or [string]::IsNullOrWhiteSpace($DestPath)) {
-  Write-Error "SourcePath and DestPath are required."
-  Show-Usage
-  exit 1
-}
-
-if (-not (Test-Path -LiteralPath $SourcePath -PathType Container)) {
-  Write-Error "SOURCE path does not exist or is not a directory: $SourcePath"
-  exit 1
-}
-if (-not (Test-Path -LiteralPath $DestPath -PathType Container)) {
-  Write-Error "DEST path does not exist or is not a directory: $DestPath"
-  exit 1
-}
-
-$srcFull = (Resolve-Path -LiteralPath $SourcePath).Path
-$dstFull = (Resolve-Path -LiteralPath $DestPath).Path
-if ($srcFull -ieq $dstFull) {
-  Write-Error "SOURCE and DEST must be different directories."
-  exit 1
-}
-
-if (-not $NoGitCheck.IsPresent) {
-  if (-not (Test-Path -LiteralPath (Join-Path $SourcePath ".git") -PathType Container)) {
-    Write-Error "SOURCE/.git directory not found. Is SourcePath a git repository?"
-    exit 1
-  }
-  if (-not (Test-Path -LiteralPath (Join-Path $DestPath ".git") -PathType Container)) {
-    Write-Error "DEST/.git directory not found. Is DestPath a git repository?"
-    exit 1
-  }
-}
-
-Write-Host "[1/3] git pull in SOURCE: $srcFull"
-if (-not [string]::IsNullOrWhiteSpace($Remote) -and -not [string]::IsNullOrWhiteSpace($Branch)) {
-  & git -C $srcFull pull $Remote $Branch
-} else {
-  & git -C $srcFull pull
-}
-
-Write-Host "[2/3] Copy SOURCE -> DEST (excluding .git)"
-$items = Get-ChildItem -LiteralPath $srcFull -Force
-
-foreach ($item in $items) {
-  if ($item.Name -eq ".git") {
-    continue
-  }
-
-  $target = Join-Path $dstFull $item.Name
-
-  # Replace by name: delete destination entry if present, then copy.
-  if (Test-Path -LiteralPath $target) {
-    Remove-Item -LiteralPath $target -Recurse -Force
-  }
-
-  if ($item.PSIsContainer) {
-    Copy-Item -LiteralPath $item.FullName -Destination $dstFull -Recurse -Force
-  } else {
-    Copy-Item -LiteralPath $item.FullName -Destination $dstFull -Force
-  }
-}
-
-Write-Host "Copy completed."
-
-if ($Push.IsPresent) {
-  Write-Host "[3/3] git push from DEST: $dstFull"
-  if (-not [string]::IsNullOrWhiteSpace($Remote) -and -not [string]::IsNullOrWhiteSpace($Branch)) {
-    & git -C $dstFull push $Remote $Branch
-  } else {
-    & git -C $dstFull push
-  }
-}
-
-if ($Wait.IsPresent) {
-  Read-Host "Done. Press Enter to exit..."
-}
-```
-
+> Если вы обнаружили ошибку в этом тексте - сообщите пожалуйста автору!
