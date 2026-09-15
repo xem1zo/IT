@@ -18,7 +18,7 @@ joomla-docker/
 └── compose.yml
 ```
 
-Создаём каталог проекта
+Создаём каталог проекта одной командой в Git-Bash
 ```shell
 mkdir -p joomla-docker && touch joomla-docker/compose.yaml && cd joomla-docker
 ```
@@ -89,6 +89,9 @@ volumes:
 docker compose up -d
 ```
 Проверка статуса
+```shell
+docker compose ls
+```
 ```shell
 docker compose ps -a
 ```
