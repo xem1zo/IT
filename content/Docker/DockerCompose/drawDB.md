@@ -135,7 +135,7 @@ docker compose ls
 
 <div align="center">
 
-![Скриншот drawDB](/content/Docker/DockerCompose/img/21.png)
+![Скриншот drawDB](/content/Docker/DockerCompose/img/screen.png)
 
 </div>
 
