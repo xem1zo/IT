@@ -1,25 +1,21 @@
 <div align="center">
 
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="90" alt="PostgreSQL"/>
+
+<br>
+
 # 🐘 PostgreSQL + pgAdmin
 
 ### *Полноценный стек для работы с базами данных в Docker*
 
 <br>
 
-<img src="https://img.shields.io/badge/PostgreSQL-17-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
-&nbsp;&nbsp;➕&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/pgAdmin-4-326690?style=for-the-badge&logo=pgadmin&logoColor=white" alt="pgAdmin"/>
-&nbsp;&nbsp;➕&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
-
-<br><br>
-
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17--alpine-336791?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![pgAdmin](https://img.shields.io/badge/pgAdmin-4-326690?style=flat-square&logo=pgadmin&logoColor=white)](https://www.pgadmin.org/)
-[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square&logo=docker&logoColor=white)](https://docs.docker.com/compose/)
-[![YAML](https://img.shields.io/badge/Config-YAML-CB171E?style=flat-square&logo=yaml&logoColor=white)](https://yaml.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17--alpine-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![pgAdmin](https://img.shields.io/badge/pgAdmin-4-326690?style=for-the-badge&logo=pgadmin&logoColor=white)](https://www.pgadmin.org/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docs.docker.com/compose/)
 
 </div>
+
 ---
 
 <div align="center">
