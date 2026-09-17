@@ -1,5 +1,4 @@
 #!/bin/bash
-# infinity.sh
 # Бесконечный цикл
 while true; do
     echo "Бесконечно!"

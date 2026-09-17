@@ -1,5 +1,4 @@
 #!/bin/bash
-# diffStr.sh
 # Сравнение строк
 str1="cap"
 str2="word"
