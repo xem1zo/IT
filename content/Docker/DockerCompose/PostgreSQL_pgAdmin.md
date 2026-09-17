@@ -1,158 +1,429 @@
-## Docker compose конетейнеры c PostgreSQL+pgAdmin
+<div align="center">
 
-- **pgAdmin** — официальный графический инструмент для администрирования PostgreSQL
-- **PostgreSQL** (часто — Postgres) — свободная объектно‑реляционная система управления базами данных (ORDBMS) с открытым исходным кодом.
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="80" alt="PostgreSQL"/>&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://www.pgadmin.org/static/COMPILED/assets/img/postgresql-logo.png" width="80" alt="pgAdmin"/>
 
-Перед началом работы над этим проектом, проверье другие запущенные у вас **docker-compose** приложения:
+<br>
+
+# 🐘 PostgreSQL + pgAdmin
+
+### *Полноценный стек для работы с базами данных в Docker*
+
+<br>
+
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17--alpine-336791?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![pgAdmin](https://img.shields.io/badge/pgAdmin-4-326690?style=flat-square&logo=pgadmin&logoColor=white)](https://www.pgadmin.org/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square&logo=docker&logoColor=white)](https://docs.docker.com/compose/)
+[![YAML](https://img.shields.io/badge/Config-YAML-CB171E?style=flat-square&logo=yaml&logoColor=white)](https://yaml.org/)
+
+</div>
+
+---
+
+<div align="center">
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║   🐘 POSTGRES  ────►  🎛️ PGADMIN  ────►  💻 BROWSER         ║
+║                                                              ║
+║   Хранилище    ────►  Управление  ────►  Визуализация       ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+</div>
+
+---
+
+## 🎴 О проекте
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🐘 PostgreSQL
+**Объектно-реляционная СУБД** с открытым исходным кодом.
+
+- 🏆 Одна из самых надёжных СУБД в мире
+- 🔓 Полностью бесплатная
+- 🌍 Поддержка сообщества по всему миру
+
+</td>
+<td width="50%" valign="top">
+
+### 🎛️ pgAdmin 4
+**Официальный графический клиент** для PostgreSQL.
+
+- 🖥️ Веб-интерфейс
+- 📊 Визуальные инструменты
+- 🔍 Удобный SQL-редактор
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚦 Пре-флайт проверка
+
+> 🛑 **ОСТАНОВИТЕСЬ!** Перед запуском убедитесь, что **свободны порты** `5432` и `5050`.
+
 ```shell
 docker compose ls
 ```
-их лучше остановить, чтобы снизить риск возникновения конфликтов использования портов!
 
-### 1. Создание каталога проекта
+> 💡 **Лайфхак:** остановите лишние контейнеры — меньше конфликтов, больше счастья.
 
-Структура проекта
+---
+
+## 🗺️ Карта путешествия
+
+<div align="center">
+
+|  | Шаг | Действие | Время |
+|:-:|:---:|:---|:---:|
+| 🏗️ | **1** | [Создать каталог проекта](#-шаг-1-создание-каталога-проекта) | ~10 сек |
+| ⚙️ | **2** | [Написать `compose.yaml`](#-шаг-2-содержимое-файла-конфигурации-composeyaml) | ~2 мин |
+| 🚀 | **3** | [Запустить контейнеры](#-шаг-3-установка-и-запуск-проекта) | ~1 мин |
+| 🌐 | **4** | [Войти в pgAdmin](#-шаг-4-доступ-к-pgadmin) | ~30 сек |
+| 🔌 | **5** | [Подключиться к PostgreSQL](#-шаг-5-подключение-pgadmin-к-postgresql) | ~1 мин |
+| 🛠️ | **6** | [Управление](#-шаг-6-управление-и-полезные-команды) | — |
+| 🗑️ | **7** | [Удаление](#-шаг-7-удаление-этого-проекта) | ~30 сек |
+
+</div>
+
+---
+
+## 📁 Шаг 1. Создание каталога проекта
+
+### 🗂️ Структура
+
 ```
-postgres-pgadmin-app/
-└──compose.yaml
+📦 postgres-pgadmin-app/
+└── 📄 compose.yaml
 ```
-Создать структуру проекта можно одной bash-командой:
+
+### ⚡ Одной командой
+
 ```shell
 mkdir -p postgres-pgadmin-app && cd postgres-pgadmin-app && touch compose.yaml
 ```
 
-### 2. Содержимое файла конфигурации `compose.yaml` (или `docker-compose.yml` для совместимости со старыми версиями Docker Compose)
-```yml
-services:
-  postgres:
-    image: postgres:17-alpine
-    container_name: postgres-db
-    environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydatabase
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+> 🎯 Всё готово! Теперь заполним конфиг.
 
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: pgadmin-web
+---
+
+## ⚙️ Шаг 2. Содержимое файла конфигурации `compose.yaml`
+
+> 📌 Можно также назвать `docker-compose.yml` — для совместимости со старыми версиями Docker Compose.
+
+```yaml
+services:
+
+  # ══════════════════════════════════════════════
+  #  🐘 СЕРВИС POSTGRESQL
+  # ══════════════════════════════════════════════
+  postgres:
+    image: postgres:17-alpine          # 📦 Лёгкий alpine-образ PostgreSQL 17
+    container_name: postgres-db        # 🏷️ Имя контейнера
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@example.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      POSTGRES_USER: myuser            # 👤 Имя пользователя
+      POSTGRES_PASSWORD: mypassword    # 🔑 Пароль
+      POSTGRES_DB: mydatabase          # 🗄️ Имя БД
     ports:
-      - "5050:80"
+      - "5432:5432"                    # 🔌 Проброс порта
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # 💾 Данные
+
+  # ══════════════════════════════════════════════
+  #  🎛️ СЕРВИС PGADMIN 4
+  # ══════════════════════════════════════════════
+  pgadmin:
+    image: dpage/pgadmin4:latest       # 📦 Официальный образ pgAdmin
+    container_name: pgadmin-web        # 🏷️ Имя контейнера
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com     # 📧 Логин
+      PGADMIN_DEFAULT_PASSWORD: admin              # 🔑 Пароль
+    ports:
+      - "5050:80"                      # 🔌 Проброс порта
 
 volumes:
-  postgres_data:
+  postgres_data:                       # 💾 Именованный том
 ```
 
-### 3. Установка и запуск проекта
+> 💡 **Обратите внимание:** pgAdmin **не имеет** секции `volumes` — его настройки не так критичны, и при перезапуске он попросит заново подключиться к БД.
 
-В терминале, находясь в папке с файлом `compose.yaml`, выполните команду для запуска всех сервисов в фоновом режиме:
+---
+
+## 🚀 Шаг 3. Установка и запуск проекта
+
+### ▶️ Поднимаем оба контейнера
+
 ```shell
 docker compose up -d
 ```
-Дождитесь полной загрузки. Убедиться, что всё работает, можно командой:
+
+### 🔍 Проверяем статус
+
 ```shell
 docker compose ps -a
 ```
-Оба контейнера (`pgadmin` и `postgres`) должны иметь статус **Up**.
 
-### 4. Доступ к pgAdmin
+### 📊 Ожидаемый результат
 
-[Откройте в браузере адрес: http://localhost:5050](http://localhost:5050)
+<div align="center">
 
-На странице входа используйте данные, указанные в переменных окружения:
-- **Email/Username:** `admin@example.com`
-- **Password:** `admin`
+| 🏷️ Name | 🖼️ Image | 📌 Status | 🔌 Ports |
+|:---|:---|:---:|:---|
+| `postgres-db` | `postgres:17-alpine` | 🟢 **Up** | `0.0.0.0:5432→5432/tcp` |
+| `pgadmin-web` | `dpage/pgadmin4:latest` | 🟢 **Up** | `0.0.0.0:5050→80/tcp` |
 
-### 5. Подключение pgAdmin к PostgreSQL
+</div>
 
-- На вкладке **General** задайте любое понятное имя для сервера (например, `My Local PostgreSQL`).
-- На вкладке Connection заполните следующие поля:
-  - **Host name/address:** `postgres-db` (имя сервиса PostgreSQL из файла compose.yaml).
-  - **Port:** `5432`
-  - **Maintenance database:** `mydatabase`
-  - ** Username:** `myuser`
-  - **Password:** `mypassword`
-- Нажмите **Save**.
+> ✅ Оба контейнера должны иметь статус **`Up`**.
 
-![Screen](/content/Docker/DockerCompose/img/16.png)
-![Screen](/content/Docker/DockerCompose/img/17.png)
-![Screen](/content/Docker/DockerCompose/img/18.png)
-![Screen](/content/Docker/DockerCompose/img/19.png)
+---
 
-### 6. Управление и полезные команды
+## 🌐 Шаг 4. Доступ к pgAdmin
 
-Находясь в папке `postgres-pgadmin-app` можно выполнить:
+<div align="center">
 
-1. Просмотр логов приложения **phpmyadmin** в реальном времени
+### 🔓 [**http://localhost:5050**](http://localhost:5050)
+
+</div>
+
+### 🔑 Данные для входа
+
+<table align="center">
+<tr>
+<th>Поле</th>
+<th>Значение</th>
+</tr>
+<tr>
+<td>📧 <b>Email / Username</b></td>
+<td><code>admin@example.com</code></td>
+</tr>
+<tr>
+<td>🔑 <b>Password</b></td>
+<td><code>admin</code></td>
+</tr>
+</table>
+
+---
+
+## 🔌 Шаг 5. Подключение pgAdmin к PostgreSQL
+
+### 📝 Шаг за шагом
+
+<details open>
+<summary><b>1️⃣ Вкладка <code>General</code> — общее</b></summary>
+
+> 💬 Задайте любое понятное имя для сервера, например:
+> ```
+> My Local PostgreSQL
+> ```
+
+</details>
+
+<details open>
+<summary><b>2️⃣ Вкладка <code>Connection</code> — параметры подключения</b></summary>
+
+| 🔧 Поле | 📌 Значение | 💡 Что это |
+|:---|:---|:---|
+| **Host name/address** | `postgres-db` | Имя сервиса PostgreSQL из `compose.yaml` |
+| **Port** | `5432` | Порт PostgreSQL |
+| **Maintenance database** | `mydatabase` | Служебная БД |
+| **Username** | `myuser` | Пользователь из env |
+| **Password** | `mypassword` | Пароль из env |
+
+</details>
+
+<details open>
+<summary><b>3️⃣ Сохраняем — кнопка <code>Save</code></b></summary>
+
+> 💾 После нажатия **Save** pgAdmin установит соединение и покажет дерево объектов БД.
+
+</details>
+
+### 📸 Скриншоты
+
+<div align="center">
+
+![Screen 1](/content/Docker/DockerCompose/img/16.png)
+![Screen 2](/content/Docker/DockerCompose/img/17.png)
+![Screen 3](/content/Docker/DockerCompose/img/18.png)
+![Screen 4](/content/Docker/DockerCompose/img/19.png)
+
+</div>
+
+---
+
+## 🛠️ Шаг 6. Управление и полезные команды
+
+> 📁 Все команды выполняются из папки `postgres-pgadmin-app`
+
+<details open>
+<summary><b>📜 1. Логи pgAdmin в реальном времени</b></summary>
+
 ```shell
 docker compose logs -f pgadmin
 ```
-`-f` в режиме ожидания (в режиме реального времени)
 
-Чтобы выйти из режима просмотра логов, необходимо выполнить `Ctrl+C` в терминале
+> `-f` — режим follow (поток в реальном времени).
+> 🛑 Выход: `Ctrl+C`.
 
-2. Просмотр логов базы данных **mysql** в реальном времени
+</details>
+
+<details open>
+<summary><b>📜 2. Логи PostgreSQL в реальном времени</b></summary>
+
 ```shell
 docker compose logs -f postgres
 ```
-Чтобы выйти из режима просмотра логов, необходимо выполнить `Ctrl+C` в терминале
 
-3. Приостановить запущенный контейнер:
+> 🛑 Выход: `Ctrl+C`.
+
+</details>
+
+<details open>
+<summary><b>⏸️ 3. Приостановить запущенный контейнер</b></summary>
+
 ```shell
 docker compose stop
 ```
-4. Запустить приостановленный контейнер:
+
+</details>
+
+<details open>
+<summary><b>▶️ 4. Запустить приостановленный контейнер</b></summary>
+
 ```shell
 docker compose start
 ```
-5. Перезапустить
+
+</details>
+
+<details open>
+<summary><b>🔄 5. Перезапустить</b></summary>
+
 ```shell
 docker compose restart
 ```
-6. Показать конфигурацию текущего проекта:
+
+</details>
+
+<details open>
+<summary><b>⚙️ 6. Показать конфигурацию текущего проекта</b></summary>
+
 ```shell
 docker compose config
 ```
-7. Вход в контейнер **MySQL** (имя контейнера можно узнать командой `docker compose ps`)
+
+</details>
+
+<details open>
+<summary><b>🐚 7. Вход в контейнер PostgreSQL</b></summary>
+
+> ℹ️ Имя контейнера можно узнать командой `docker compose ps`.
+
 ```shell
 docker compose exec postgres bash
 ```
-![Screen](/content/Docker/DockerCompose/img/20.png)
-выйти из контейнера можно командой `exit`
 
-### 6. Удаление этого проекта
+> 🚪 Выход: `exit`.
 
-Находясь в папке `postgres-pgadmin-app`
+</details>
 
-1. Остановка контейнеров этого проекта:
+### 📸 Скриншот
+
+<div align="center">
+
+![Screen 5](/content/Docker/DockerCompose/img/20.png)
+
+</div>
+
+---
+
+## 🗑️ Шаг 7. Удаление этого проекта
+
+> 📁 Работаем из папки `postgres-pgadmin-app`
+
+### 🎯 Вариант A — Мягкое удаление (с сохранением данных)
+
 ```shell
 docker compose down
 ```
-2. Остановка с полным удалением всех данных (базы данных и файлов) - опционально:
+
+> ✅ Контейнеры удалены, **том `postgres_data` сохранён**.
+
+### 💣 Вариант B — Жёсткое удаление (полная очистка)
+
 ```shell
 docker compose down --volumes
 ```
-или для краткости:
+
+или короче:
+
 ```shell
 docker compose down -v
 ```
-(**Будьте осторожны:** эта команда удалит всё, что вы создали в проекте!).
 
-> ### Для полного удаления этого проекта, достаточно остановить его через `docker compose down` или `docker compose down --volumes`, удалить docker-образ, после чего удалить каталог проекта `postgres-pgadmin-app`
+> ⚠️ **ВНИМАНИЕ!** Эта команда **удалит все данные БД** без возможности восстановления!
 
-Выходим из каталога проекта
-```shell
-cd ..
+---
+
+### 🧭 Итоговый маршрут удаления
+
+<div align="center">
+
 ```
-и удаляем
+   ┌──────────────────┐
+   │  🛑 down -v      │  ← Остановить + удалить контейнеры + тома
+   └────────┬─────────┘
+            ▼
+   ┌──────────────────┐
+   │  🗑️ docker rmi   │  ← (опционально) удалить образы
+   └────────┬─────────┘
+            ▼
+   ┌──────────────────┐
+   │  🚪 cd ..        │  ← Выйти из папки проекта
+   └────────┬─────────┘
+            ▼
+   ┌──────────────────┐
+   │  🧹 rm -rf ...   │  ← Удалить каталог проекта
+   └──────────────────┘
+```
+
+</div>
+
+### 📋 Команды
+
 ```shell
+# 1. Выходим из каталога проекта
+cd ..
+
+# 2. Удаляем папку проекта
 rm -rf postgres-pgadmin-app
 ```
 
-> Если вы обнаружили ошибку в этом тексте - сообщите пожалуйста автору!
+---
+
+<div align="center">
+
+## 🎉 Готово!
+
+Теперь вы умеете:
+
+🐘 &nbsp; Поднимать **PostgreSQL** в Docker<br>
+🎛️ &nbsp; Подключать **pgAdmin** через веб-интерфейс<br>
+🔌 &nbsp; Управлять БД и контейнерами<br>
+🗑️ &nbsp; Чисто удалять проекты за собой
+
+---
+
+### ⭐ Если проект был полезен — поставьте звезду репозиторию!
+
+> 📝 *Если вы обнаружили ошибку в этом тексте — сообщите, пожалуйста, автору!*
+
+**Сделано с ❤️ для удобной работы с Docker Compose**
+
+</div>
