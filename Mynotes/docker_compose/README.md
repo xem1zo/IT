@@ -1,13 +1,13 @@
 ## Проекты Docker Compose
 
-- [Docker Compose - описание](/content/Docker/DockerCompose/DockerCompose.md)
-- [Joomla](/content/Docker/DockerCompose/joomla.md)
-- [WordPress](/content/Docker/DockerCompose/WordPress.md)
-- [MySQL + phpMyAdmin](/content/Docker/DockerCompose/mySQLphpMyAdmin.md)
-- [PostgresSQL](/content/Docker/DockerCompose/PostgresSQL.md)
-- [PostgreSQL+pgAdmin](/content/Docker/DockerCompose/PostgreSQL_pgAdmin.md)
-- [drawDB](/content/Docker/DockerCompose/drawDB.md)
-- [Homehub](/content/Docker/DockerCompose/Homehub.md)
+- [Docker Compose - описание](/Mynotes/docker_compose/DockerCompose.md)
+- [Joomla](/Mynotes/docker_compose/Joomla.md)
+- [WordPress](/Mynotes/docker_compose/Wordpress.md)
+- [MySQL + phpMyAdmin](/Mynotes/docker_compose/mySQLphpMyAdmin.md)
+- [PostgresSQL](/Mynotes/docker_compose/PostgresSQL.md)
+- [PostgreSQL+pgAdmin](/Mynotes/docker_compose/PostgreSQL_pgAdmin.md)
+- [drawDB](/Mynotes/docker_compose/drawdb.md)
+- [Homehub](/Mynotes/docker_compose/Homehub.md)
 
 ---
 
