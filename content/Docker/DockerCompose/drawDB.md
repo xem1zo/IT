@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/drawdb-io/drawdb/main/public/logo.svg" width="90" alt="drawDB Logo"/>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" width="80" alt="DB"/>
 
 # 🎨 drawDB в Docker
 
@@ -8,7 +8,6 @@
 
 [![drawDB](https://img.shields.io/badge/drawDB-Open%20Source-5B8DEF?style=for-the-badge&logo=databricks&logoColor=white)](https://github.com/drawdb-io/drawdb)
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docs.docker.com/compose/)
-[![SQL](https://img.shields.io/badge/SQL-Generator-CC2927?style=for-the-badge&logo=sqlite&logoColor=white)](https://ru.wikipedia.org/wiki/SQL)
 
 </div>
 
