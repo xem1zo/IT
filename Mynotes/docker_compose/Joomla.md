@@ -210,12 +210,12 @@ docker network inspect joomla-docker_joomla-network
 
 ### 📸 Скриншоты установки
 
-![Screen 1](/content/Docker/DockerCompose/img/7.png)
-![Screen 2](/content/Docker/DockerCompose/img/8.png)
-![Screen 3](/content/Docker/DockerCompose/img/9.png)
-![Screen 4](/content/Docker/DockerCompose/img/10.png)
-![Screen 5](/content/Docker/DockerCompose/img/11.png)
-![Screen 6](/content/Docker/DockerCompose/img/12.png)
+![Screen 1](/Mynotes/docker_compose/img/297a283d-40ba-413e-a6c3-68596e3a77ef.png)
+![Screen 2](/Mynotes/docker_compose/img/179deeea-df1e-4664-a2ca-dfdf1b926d13.png)
+![Screen 3](/Mynotes/docker_compose/img/7b4ee820-dc68-48b2-8a37-8df2df65aee5.png)
+![Screen 4](/Mynotes/docker_compose/img/dd63e5a6-71b1-47f0-b499-6bf2802ed6ff.png)
+![Screen 5](/Mynotes/docker_compose/img/eda38812-5f8f-429f-832c-c4f75e9d1daa.png)
+![Screen 6](/Mynotes/docker_compose/img/f879e867-c0f5-494d-a760-45e7a20e463a.png)
 
 ---
 
