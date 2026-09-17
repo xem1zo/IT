@@ -1,7 +1,8 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="80" alt="PostgreSQL"/>&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://www.pgadmin.org/static/COMPILED/assets/img/postgresql-logo.png" width="80" alt="pgAdmin"/>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="80" alt="PostgreSQL"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://www.pgadmin.org/static/COMPILED/assets/img/postgresql-logo.png" width="0" height="0" alt=""/>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" width="80" alt="pgAdmin"/>
 
 <br>
 
@@ -17,7 +18,6 @@
 [![YAML](https://img.shields.io/badge/Config-YAML-CB171E?style=flat-square&logo=yaml&logoColor=white)](https://yaml.org/)
 
 </div>
-
 ---
 
 <div align="center">
