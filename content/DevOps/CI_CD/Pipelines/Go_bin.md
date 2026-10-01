@@ -22,7 +22,7 @@
 ### 1. Создайте на вашем компьютере, в корневом каталоге текущего пользователя такую структуру:
 
 ```text
-hello-go/
+hello-go_bin/
 ├── .github/workflows/ci.yml
 ├── greeting/
 │   ├── greeting.go
@@ -38,7 +38,7 @@ cd ~
 ```
 Создать структуру проекта одной bash-командой (**Git Bash / Linux / WSL / macOS**):
 ```shell
-mkdir -p hello-go/{.github/workflows,greeting} && \
+mkdir -p hello-go_bin/{.github/workflows,greeting} && \
 cd hello-go && \
 
 cat > go.mod << 'EOF'
@@ -231,7 +231,7 @@ find . -type f | sort
 
 **Git Bash / Linux / WSL / macOS:**
 ```shell
-cd ~/hello-go
+cd ~/hello-go_bin
 mkdir -p ~/.go-docker-cache
 docker run --rm \
   -u "$(id -u):$(id -g)" \
@@ -313,7 +313,7 @@ ls -la hello-go-linux-amd64
 
 **Git Bash / Linux / WSL / macOS:**
 ```shell
-cd ~
+cd ~/hello-go
 git init
 git add .
 git commit -m "Initial commit: Go app with CI/CD to GitHub Releases"
@@ -325,6 +325,7 @@ git push -u origin main
 ```
 **PowerShell (Windows):**
 ```powershell
+cd ~/hello-go
 git init
 git add .
 git commit -m "Initial commit: Go app with CI/CD to GitHub Releases"
@@ -359,7 +360,7 @@ git push origin v1.0.0
 2. `release` — **запустится**, соберёт 5 бинарников в параллельных job'ах
 3. Создастся GitHub Release `v1.0.0` с прикреплёнными файлами
 
-**Workflow** выполняется ~2–3 минуты. После успешного Actions (зелёная лампочка во вкладке Actions) можно продолжить выполнение задания.
+**Workflow** выполняется ~2–3 минуты. После успешного **Actions** (зелёная лампочка во вкладке **Actions**) можно продолжить выполнение задания.
 
 **Проверка:** откройте
 ```
@@ -466,6 +467,8 @@ GitHub создаст **новый Release** `v1.1.0`, старый `v1.0.0` о�
 **Оба подхода дополняют друг друга:**
 - **GHCR** — для деплоя на серверы (Docker Compose, Kubernetes)
 - **Releases** — для распространения среди пользователей
+
+![Screen](/content/DevOps/CI_CD/img/17_workflow.png)
 
 > Если вы обнаружили ошибку в этом тексте — сообщите пожалуйста автору!
 
