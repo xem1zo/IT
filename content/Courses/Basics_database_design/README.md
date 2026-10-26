@@ -3,12 +3,27 @@
 ## Навигация по предмету
 
 Теория
+- [Данные](/content/Courses/Basics_database_design/content/Data.md)
+- [Основы проектирования баз данных](/content/Courses/Basics_database_design/content/Begin.md)
 - [Классификация Баз Данных](/content/Courses/Basics_database_design/content/All_db.md)
 - [ER-диаграмы](/content/Courses/Basics_database_design/content/ER_dia.md)
+- [](/content/Courses/Basics_database_design/content/Docs/Aliases.md)
+- [](/content/Courses/Basics_database_design/content/Docs/dump.md)
+- [](/content/Courses/Basics_database_design/content/Docs/IN.md)
+- [](/content/Courses/Basics_database_design/content/Docs/JOIN.md)
+- [](/content/Courses/Basics_database_design/content/Docs/set_theory.md)
+- [](/content/Courses/Basics_database_design/content/Docs/tuple.md)
+- [](/content/Courses/Basics_database_design/content/Docs/SQL_File.md)
+- []()
 
 Практика
-- [Подробные уроки по Docker для начинающих](https://gitflic.ru/project/rurewa/altlinux/blob?file=content%2FDocker%2FDocker.md&branch=master&mode=markdown)
-- [Работа с базой данных внутри контейнера](/content/Basics_database_design/db_base.md)
+
+- Docker
+  - [Подробные уроки по Docker для начинающих](https://gitflic.ru/project/rurewa/altlinux/blob?file=content%2FDocker%2FDocker.md&branch=master&mode=markdown)
+  - [Работа с базой данных внутри контейнера](/content/Basics_database_design/db_base.md)
+- Базы Данных
+  - [Интерактивная работа с MySQL в изолированном окружении Docker](/content/Courses/Basics_database_design/content/Content/MySQL.md)
+
 
 ---
 
@@ -213,5 +228,6 @@
 - [LibreDB Studio](https://www.opennet.ru/opennews/art.shtml?num=66216)
 - [Практическое владение языком SQL](https://sql-ex.ru/)
 - [Создание ER-диаграмм](https://app.diagrams.net/)
+- [Тренажёр SQL ](https://sql.coderang.dev/)
 
 > Если вы обнаружили ошибку в этом тексте - сообщите пожалуйста автору!
